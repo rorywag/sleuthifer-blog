@@ -50,7 +50,7 @@ Memory forensics with Volatility.
 
 </div>
 
-<div class="card sleuth-card--featured" markdown>
+<div class="card" markdown>
 
 [:material-shield-search:{ .lg .middle } __Detections__](detections/index.md)
 
