@@ -40,7 +40,7 @@ Alright, so we had a file and now it's deleted but we can still view it using FT
 
 The command I will use is below. It's very simple in that it executes the Cipher.exe utility with the argument "/w:" telling it to overwrite deleted data and in this case points it F:\Cipher folder I made to contain the text file on my USB. The next step is to sit back and wait as it does its stuff.
 
-```
+```bat
 cipher.exe/w:f:\Cipher
 ```
 
@@ -68,8 +68,8 @@ The process can take a long time to complete depending on the amount of deleted 
 
 ## _References_
 
-{% embed url="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cipher" %}
+<https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cipher>
 
-{% embed url="https://docs.microsoft.com/en-us/troubleshoot/windows-server/windows-security/use-cipher-to-overwrite-deleted-data" %}
+<https://docs.microsoft.com/en-us/troubleshoot/windows-server/windows-security/use-cipher-to-overwrite-deleted-data>
 
-{% embed url="https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/command-line-process-auditing" %}
+<https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/command-line-process-auditing>

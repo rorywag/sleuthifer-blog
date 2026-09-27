@@ -12,7 +12,7 @@ Quickly lets talk about what SMTP is first. The guys over at GeekforGeeks put it
 
 First lets find the first SMTP packet using the Display Filter section with the filter below.
 
-```
+```text
 smtp
 ```
 
@@ -34,7 +34,7 @@ We can now see the flow of traffic between the two addresses which appears to be
 
 To end lets take a quick look at what's in the TCP Stream we've captured. Looking down the flow of text we can see a point where Ann's laptop is looking to authenticate with the MSA using plain text. This means the authentication process isn't encrypted and in this case is using base64 encoding which are the strings at lines 6 to 9.
 
-```
+```text
 250-AUTH=XAOL-UAS-MB LOGIN PLAIN
 250-ENHANCEDSTATUSCODES
 250-8BITMIME

@@ -49,7 +49,7 @@ In this situation know what the MAC address of the computer of interest is, whic
 
 This is the filter we will use:
 
-```
+```text
 eth.addr == 00:21:70:4d:4f:ae and dhcp
 ```
 

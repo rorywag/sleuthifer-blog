@@ -4,33 +4,31 @@ description: Training, News and Items of interest
 
 # Useful Links
 
-{% tabs %}
-{% tab title="Websites" %}
-**General**
+=== "Websites"
 
-* [**SANS Institute**](https://www.sans.org/)&#x20;
-* [**This Week in 4n6**](https://thisweekin4n6.com/)
-* [**Forensic Focus**](https://www.forensicfocus.com/)
-* [**/r/netsec**](https://www.reddit.com/r/netsec/)
-* [**/r/netsecstudents**](https://www.reddit.com/r/netsecstudents/)
-* [**DFIR Madness**](https://dfirmadness.com/)
+    **General**
 
-**Digital Forensics**
+    * [**SANS Institute**](https://www.sans.org/)&#x20;
+    * [**This Week in 4n6**](https://thisweekin4n6.com/)
+    * [**Forensic Focus**](https://www.forensicfocus.com/)
+    * [**/r/netsec**](https://www.reddit.com/r/netsec/)
+    * [**/r/netsecstudents**](https://www.reddit.com/r/netsecstudents/)
+    * [**DFIR Madness**](https://dfirmadness.com/)
 
-* [**NTFS - NTFS.com**](https://www.ntfs.com/index.html)
-* [**FAT File System - NTFS.com**](https://www.ntfs.com/fat_systems.htm)
+    **Digital Forensics**
 
-**Incident Response**
+    * [**NTFS - NTFS.com**](https://www.ntfs.com/index.html)
+    * [**FAT File System - NTFS.com**](https://www.ntfs.com/fat_systems.htm)
 
-* [**Malware-Traffic-Analysis**](https://www.malware-traffic-analysis.net/)
-{% endtab %}
+    **Incident Response**
 
-{% tab title="Books" %}
-* [**Network Forensics**](https://www.amazon.com/Network-Forensics-Tracking-Hackers-Cyberspace/dp/0132564718): Tracking Hackers Through Cyberspace by Jonathan Ham and Sherri Davidoff
+    * [**Malware-Traffic-Analysis**](https://www.malware-traffic-analysis.net/)
 
-More books can be found [**here**.](https://aboutdfir.com/reading/books/)
-{% endtab %}
-{% endtabs %}
+=== "Books"
+
+    * [**Network Forensics**](https://www.amazon.com/Network-Forensics-Tracking-Hackers-Cyberspace/dp/0132564718): Tracking Hackers Through Cyberspace by Jonathan Ham and Sherri Davidoff
+
+    More books can be found [**here**.](https://aboutdfir.com/reading/books/)
 
 
 

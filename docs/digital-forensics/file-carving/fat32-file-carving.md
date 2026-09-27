@@ -6,7 +6,7 @@ description: How to manually carve a deleted file from a FAT32 file system using
 
 Let's begin the process of manually carving a deleted file from a FAT32 filesystem but as always find resources outside of this article to help you further your understanding and remember Google is your friend.
 
-It is recommended having a read of the File Carving page found [**here** ](./)to have a baseline understanding of concepts.
+It is recommended having a read of the File Carving page found [**here** ](README.md)to have a baseline understanding of concepts.
 
 ### Sector and Cluster Size
 
@@ -79,7 +79,7 @@ The high word is 0x0000 meaning we only need the low word value at offset 0x1A t
 
 ### File Size
 
-The value at offset 0x1C = 44 62 01 00. This is read as little-endian which is 0x16244 and using the programmer calculator within Windows (which has a hex to dec function) is 90,692 byte&#x73;**,** which is the logical size. Refer to the File Carving Intro [**here** ](./)for what the difference between logical and physical size.
+The value at offset 0x1C = 44 62 01 00. This is read as little-endian which is 0x16244 and using the programmer calculator within Windows (which has a hex to dec function) is 90,692 byte&#x73;**,** which is the logical size. Refer to the File Carving Intro [**here** ](README.md)for what the difference between logical and physical size.
 
 We can now divide the file size by cluster size to identify the number of clusters the file uses 90,692/1,024 = 88.57 clusters which we round up to 89 clusters.
 
