@@ -30,3 +30,4 @@
 
 * [Tools](tools.md)
 * [Useful Links](useful-links.md)
+* [Subscribe via RSS](subscribe.md)
