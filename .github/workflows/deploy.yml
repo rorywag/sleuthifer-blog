@@ -3,6 +3,10 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [main]
+  # Sent by rorywag/KQL-Detections on every push, so the Detections section
+  # rebuilds when a detection changes. See integrations/kql-detections/README.md.
+  repository_dispatch:
+    types: [kql-detections-updated]
 
 permissions:
   contents: read
@@ -37,6 +41,11 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      # scripts/gen_detections.py builds the Detections section from this clone.
+      # Full history, because page dates come from the detection files' git log.
+      - name: Clone KQL-Detections
+        run: git clone https://github.com/rorywag/KQL-Detections.git .cache/kql-detections
 
       - uses: actions/configure-pages@v6
 
