@@ -95,6 +95,12 @@ hooks:
 
 extra:
   social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/rorywagner/
+      name: LinkedIn
+    - icon: fontawesome/brands/github
+      link: https://github.com/rorywag
+      name: GitHub
     - icon: fontawesome/solid/square-rss
       link: https://rorywag.github.io/sleuthifer-blog/feed_rss_created.xml
       name: Subscribe via RSS (new pages)
@@ -102,10 +108,18 @@ extra:
       link: https://rorywag.github.io/sleuthifer-blog/feed_rss_updated.xml
       name: RSS feed of all page updates
 
+# Home page hero and card layout.
+extra_css:
+  - stylesheets/extra.css
+
 markdown_extensions:
   - admonition
   - attr_list
   - md_in_html
+  # :material-...: and :fontawesome-...: icons, used on the home page cards.
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - tables
   - toc:
       permalink: true
