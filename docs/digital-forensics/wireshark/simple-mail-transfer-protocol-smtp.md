@@ -1,3 +1,7 @@
+---
+description: Following a TCP stream in Wireshark to read an SMTP login and decode its base64 credentials.
+---
+
 # Follow TCP Stream and SMTP
 
 In this section we will be analysing SMTP traffic from a packet capture and using some other Wireshark features such as Follow TCP Stream.
