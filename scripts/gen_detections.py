@@ -54,6 +54,30 @@ URL_RE = re.compile(r"https?://[^\s,<>]+[^\s,<>.)]")
 LET_DYNAMIC_RE = re.compile(r"\blet\s+(\w+)\s*=\s*dynamic\(\s*\[(.*?)\]\s*\)", re.S)
 STRING_RE = re.compile(r"'([^']*)'|\"([^\"]*)\"")
 
+# Enterprise ATT&CK tactics in kill-chain order, taken from the matrix's tactic
+# order in MITRE's ATT&CK v19 STIX data. v19 split Defense Evasion into Stealth and
+# Defense Impairment; the old name is kept in its original slot because existing
+# detection headers still use it. Tactics not listed here sort after these, A to Z.
+TACTIC_ORDER = [
+    "Reconnaissance",
+    "Resource Development",
+    "Initial Access",
+    "Execution",
+    "Persistence",
+    "Privilege Escalation",
+    "Defense Evasion",
+    "Stealth",
+    "Defense Impairment",
+    "Credential Access",
+    "Discovery",
+    "Lateral Movement",
+    "Collection",
+    "Command and Control",
+    "Exfiltration",
+    "Impact",
+]
+UNMAPPED = "Unmapped"
+
 
 @dataclass
 class Detection:
@@ -326,9 +350,28 @@ def render_tactics() -> str:
     return front_matter(meta) + "# Detections by tactic\n\n<!-- material/tags -->\n"
 
 
+def tactic_sort_key(tactic: str) -> tuple:
+    known = {t.lower(): i for i, t in enumerate(TACTIC_ORDER)}
+    if tactic == UNMAPPED:
+        return (2, "")
+    if tactic.lower() in known:
+        return (0, known[tactic.lower()])
+    return (1, tactic.lower())
+
+
 def render_nav(detections: list[Detection]) -> str:
-    items = ["* [Overview](index.md)", "* [By tactic](tactics.md)"]
-    items += [f"* [{d.name}]({d.slug}.md)" for d in sorted(detections, key=lambda d: d.name.lower())]
+    """Overview, then one section per tactic in kill-chain order. A detection with
+    several tactics is listed under each one, like the By tactic page."""
+    by_tactic: dict[str, list[Detection]] = {}
+    for det in detections:
+        for tactic in det.tactics or [UNMAPPED]:
+            by_tactic.setdefault(tactic, []).append(det)
+
+    items = ["* [Overview](index.md)"]
+    for tactic in sorted(by_tactic, key=tactic_sort_key):
+        items.append(f"* {tactic}")
+        for det in sorted(by_tactic[tactic], key=lambda d: d.name.lower()):
+            items.append(f"    * [{det.name}]({det.slug}.md)")
     return "\n".join(items) + "\n"
 
 
