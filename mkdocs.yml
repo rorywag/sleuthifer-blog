@@ -138,6 +138,7 @@ markdown_extensions:
 nav:
   - What is this?: README.md
   - Digital Forensics:
+      - digital-forensics/README.md
       - Cipher (Anti-forensics): digital-forensics/cipher.md
       - PowerShell History: digital-forensics/powershell-history.md
       - File Carving:
@@ -151,9 +152,11 @@ nav:
           - Protocol Summary and DHCP: digital-forensics/wireshark/protocol-summary-and-dhcp.md
           - Follow TCP Stream and SMTP: digital-forensics/wireshark/simple-mail-transfer-protocol-smtp.md
   - Incident Response:
+      - ir/README.md
       - You've been hit, popped or breached?: ir/youve-been-hit-popped-or-breached.md
       - Threat Intelligence & Intrusion Analysis: ir/threat-intelligence.md
   - Memory Analysis:
+      - memory-analysis/README.md
       - "Part 1: Memory and Volatility": memory-analysis/part1-memory-and-volatility.md
   - Detections: detections/
   - Tools: tools.md
