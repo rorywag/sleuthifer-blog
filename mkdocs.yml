@@ -69,7 +69,7 @@ plugins:
       exclude:
         - detections/*
   # Writes feed_rss_created.xml (new pages only) and feed_rss_updated.xml (every change).
-  # The created feed is the main subscribe link (nav + footer); the updated feed is footer only.
+  # Both feeds are listed on docs/subscribe.md, which the nav and the footer RSS icon open.
   - rss:
       # Use each page's front-matter description as the item summary. 0 turns off the
       # fallback to the first N characters of markdown, where tab and code markup leaked
@@ -112,12 +112,11 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/rorywag
       name: GitHub
+    # Links to the Subscribe page, which lists both feeds. Absolute, because Material
+    # writes social links into href as-is and a relative path breaks on nested pages.
     - icon: fontawesome/solid/square-rss
-      link: https://rorywag.github.io/sleuthifer-blog/feed_rss_created.xml
-      name: Subscribe via RSS (new pages)
-    - icon: material/update
-      link: https://rorywag.github.io/sleuthifer-blog/feed_rss_updated.xml
-      name: RSS feed of all page updates
+      link: https://rorywag.github.io/sleuthifer-blog/subscribe/
+      name: Subscribe via RSS
 
 # Home page hero and card layout.
 extra_css:
