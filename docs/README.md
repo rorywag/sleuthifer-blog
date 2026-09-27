@@ -1,8 +1,5 @@
 ---
-description: >-
-  This is a place I keep security related learning I do and publicly share it
-  with others. The aim is to provide easily digestible information for others to
-  learn from.
+description: Security notes on digital forensics, incident response and memory analysis, shared as I learn.
 ---
 
 # What is this?

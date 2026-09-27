@@ -1,8 +1,5 @@
 ---
-description: >-
-  A collection of information for starting to understand threat intelligence,
-  different models used to identify or understand attackers behaviour and how
-  this can assist in preventing attacks.
+description: Threat intelligence feeds, IoCs and IoAs, the Pyramid of Pain, the Cyber Kill Chain, MITRE ATT&CK and the Diamond Model.
 ---
 
 # Threat Intelligence & Intrusion Analysis

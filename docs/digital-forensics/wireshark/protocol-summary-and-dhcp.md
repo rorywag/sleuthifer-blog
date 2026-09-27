@@ -1,3 +1,7 @@
+---
+description: Using Wireshark's Protocol Hierarchy and a DHCP display filter to find a laptop's hostname and IP address.
+---
+
 # Protocol Summary and DHCP
 
 I am going to be following chapter 4 of the book "Tracking Hackers through Cyberspace" by Sherri Davidoff and Jonathan Ham. There may be acronyms or subjects beyond the scope of this article that you may not be familiar with but just flick them into Google and you'll be up to speed in no time.

@@ -16,6 +16,9 @@ exclude_docs: |
 theme:
   name: material
   custom_dir: overrides
+  # Ogre emoji (U+1F479) from Twemoji, CC-BY 4.0. See the repo README.
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.ico
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -47,7 +50,12 @@ plugins:
       fallback_to_build_date: true
   # Writes feed_rss_created.xml (new pages only) and feed_rss_updated.xml (every change).
   # The created feed is the main subscribe link (nav + footer); the updated feed is footer only.
-  - rss
+  - rss:
+      # Use each page's front-matter description as the item summary. 0 turns off the
+      # fallback to the first N characters of markdown, where tab and code markup leaked
+      # into excerpts. A page with no description now fails the strict build.
+      abstract_chars_count: 0
+      image: https://rorywag.github.io/sleuthifer-blog/assets/images/logo.png
   # Preview images for links shared on LinkedIn, Slack, etc. Needs mkdocs-material[imaging]
   # and the cairo/freetype system libraries.
   - social

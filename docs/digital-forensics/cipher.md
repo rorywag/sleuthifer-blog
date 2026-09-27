@@ -1,5 +1,5 @@
 ---
-description: Gone with out a trace (a garbled one at least)
+description: How Cipher.exe /w overwrites deleted data, tested on a USB drive and checked in FTK Imager.
 ---
 
 # Cipher (Anti-forensics)
