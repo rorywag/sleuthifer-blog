@@ -40,3 +40,61 @@
   text-align: center;
   color: var(--md-default-fg-color--light);
 }
+
+/* Raised content panel. Article and section pages get a page background with
+   the content column lifted onto a surface above it. The home page (the only
+   page with .sleuth-hero) is left as it is. Browsers without :has() skip these
+   rules and show the flat layout. Theme colours and fonts are unchanged. */
+:root {
+  --sleuth-page-bg: #eef0f3;
+  --sleuth-surface-bg: #ffffff;
+  --sleuth-surface-shadow: 0 0.05rem 0.15rem rgba(0, 0, 0, 0.06), 0 0.2rem 0.8rem rgba(0, 0, 0, 0.06);
+}
+
+/* Dark mode: page a step darker and surface a step lighter than the default
+   slate background (14%), with no white. Code blocks (18%) stay lighter still. */
+[data-md-color-scheme="slate"] {
+  --sleuth-page-bg: hsla(var(--md-hue), 15%, 11%, 1);
+  --sleuth-surface-bg: hsla(var(--md-hue), 15%, 16%, 1);
+  --sleuth-surface-shadow: 0 0.05rem 0.15rem rgba(0, 0, 0, 0.3), 0 0.2rem 1rem rgba(0, 0, 0, 0.25);
+}
+
+body:not(:has(.sleuth-hero)) {
+  background-color: var(--sleuth-page-bg);
+}
+
+body:not(:has(.sleuth-hero)) .md-content__inner {
+  /* Elements that paint the default background (tables, tab scroll fades,
+     admonitions) pick up the surface colour instead of showing darker patches. */
+  --md-default-bg-color: var(--sleuth-surface-bg);
+  --md-admonition-bg-color: var(--sleuth-surface-bg);
+  padding: 0.8rem 1.4rem 1.2rem;
+  border-radius: 0.4rem;
+  background-color: var(--sleuth-surface-bg);
+  box-shadow: var(--sleuth-surface-shadow);
+}
+
+/* Phones: keep a little page showing either side and tighten the padding. */
+@media screen and (max-width: 44.984375em) {
+  body:not(:has(.sleuth-hero)) .md-content__inner {
+    margin-right: 0.4rem;
+    margin-left: 0.4rem;
+    padding: 0.6rem 0.8rem 1rem;
+    border-radius: 0.3rem;
+  }
+}
+
+/* Sticky sidebar headings paint the default background to mask scrolling
+   content. Where the sidebars sit on the page (not as the mobile drawer), give
+   them the page colour so the headings don't show as bands. */
+@media screen and (min-width: 60em) {
+  body:not(:has(.sleuth-hero)) .md-sidebar--secondary {
+    --md-default-bg-color: var(--sleuth-page-bg);
+  }
+}
+
+@media screen and (min-width: 76.25em) {
+  body:not(:has(.sleuth-hero)) .md-sidebar--primary {
+    --md-default-bg-color: var(--sleuth-page-bg);
+  }
+}
