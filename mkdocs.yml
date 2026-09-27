@@ -1,0 +1,84 @@
+site_name: Sleuthifer
+site_description: Notes on digital forensics, incident response, memory analysis and KQL for Sentinel.
+site_url: https://rorywag.github.io/sleuthifer-blog/
+repo_url: https://github.com/rorywag/sleuthifer-blog
+repo_name: rorywag/sleuthifer-blog
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+
+# MkDocs skips dot-directories by default. GitBook stores every image in
+# .gitbook/assets, so re-include it. SUMMARY.md only drives the nav below.
+exclude_docs: |
+  !.gitbook/
+  SUMMARY.md
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  # Pygments ships lexers for both "kql" (alias of kusto) and "powershell".
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+
+# Mirrors docs/SUMMARY.md (the GitBook table of contents).
+nav:
+  - What is this?: README.md
+  - Digital Forensics:
+      - Cipher (Anti-forensics): digital-forensics/cipher.md
+      - PowerShell History: digital-forensics/powershell-history.md
+      - File Carving:
+          - digital-forensics/file-carving/README.md
+          - FAT32 File Carving: digital-forensics/file-carving/fat32-file-carving.md
+      - FTK Imager:
+          - digital-forensics/untitled/README.md
+          - Imaging & Verifying: digital-forensics/untitled/imaging-and-verifying.md
+      - Wireshark:
+          - digital-forensics/wireshark/README.md
+          - Protocol Summary and DHCP: digital-forensics/wireshark/protocol-summary-and-dhcp.md
+          - Follow TCP Stream and SMTP: digital-forensics/wireshark/simple-mail-transfer-protocol-smtp.md
+  - Incident Response:
+      - You've been hit, popped or breached?: ir/youve-been-hit-popped-or-breached.md
+      - Threat Intelligence & Intrusion Analysis: ir/threat-intelligence.md
+  - Memory Analysis:
+      - "Part 1: Memory and Volatility": memory-analysis/part1-memory-and-volatility.md
+  - KQL for Sentinel:
+      - TBC: kql-for-sentinel/tbc.md
+  - Tools: tools.md
+  - Useful Links: useful-links.md
