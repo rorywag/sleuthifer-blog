@@ -4,6 +4,7 @@
 
 ## Digital Forensics
 
+* [Digital Forensics](digital-forensics/README.md)
 * [Cipher (Anti-forensics)](digital-forensics/cipher.md)
 * [PowerShell History](digital-forensics/powershell-history.md)
 * [File Carving](digital-forensics/file-carving/README.md)
@@ -16,11 +17,13 @@
 
 ## Incident Response <a href="#ir" id="ir"></a>
 
+* [Incident Response](ir/README.md)
 * [You've been hit, popped or breached?](ir/youve-been-hit-popped-or-breached.md)
 * [Threat Intelligence & Intrusion Analysis](ir/threat-intelligence.md)
 
 ## Memory Analysis
 
+* [Memory Analysis](memory-analysis/README.md)
 * [Part 1: Memory and Volatility](memory-analysis/part1-memory-and-volatility.md)
 
 ***
