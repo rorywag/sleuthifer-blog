@@ -1,0 +1,48 @@
+/* Home page landing layout (docs/README.md). Colours come from Material's
+   theme variables so the page follows the light and dark palettes. */
+
+.sleuth-hero {
+  text-align: center;
+  padding: 1.5rem 0 1rem;
+}
+
+.md-typeset .sleuth-hero__logo {
+  width: 7rem;
+  height: auto;
+}
+
+.md-typeset .sleuth-hero h1 {
+  margin: 0.75rem 0 0.25rem;
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .sleuth-hero__tagline {
+  max-width: 40rem;
+  margin: 0 auto 1.5rem;
+  font-size: 1.05rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .sleuth-hero .md-button {
+  margin: 0.25rem 0.35rem;
+}
+
+/* In dark mode the outlined button's indigo text is too dim on the slate
+   background, so use the lighter link colour. Hover keeps Material's style. */
+[data-md-color-scheme="slate"] .md-typeset .sleuth-hero .md-button:not(.md-button--primary):not(:hover):not(:focus) {
+  color: var(--md-typeset-a-color);
+  border-color: var(--md-typeset-a-color);
+}
+
+/* Detections is the centrepiece: accent border and a light accent tint. */
+.md-typeset .grid > .card.sleuth-card--featured {
+  border-color: var(--md-accent-fg-color);
+  background-color: var(--md-accent-fg-color--transparent);
+}
+
+.sleuth-intro {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--md-default-fg-color--light);
+}
