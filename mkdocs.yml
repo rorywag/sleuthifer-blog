@@ -15,6 +15,7 @@ exclude_docs: |
 
 theme:
   name: material
+  custom_dir: overrides
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -40,6 +41,28 @@ theme:
 
 plugins:
   - search
+  # Dates come from git history, so the deploy workflow checks out with fetch-depth: 0.
+  - git-revision-date-localized:
+      type: date
+      fallback_to_build_date: true
+  # Writes feed_rss_created.xml (new pages only) and feed_rss_updated.xml (every change).
+  # The created feed is the main subscribe link (nav + footer); the updated feed is footer only.
+  - rss
+  # Preview images for links shared on LinkedIn, Slack, etc. Needs mkdocs-material[imaging]
+  # and the cairo/freetype system libraries.
+  - social
+
+hooks:
+  - hooks/rss_social_cards.py
+
+extra:
+  social:
+    - icon: fontawesome/solid/square-rss
+      link: https://rorywag.github.io/sleuthifer-blog/feed_rss_created.xml
+      name: Subscribe via RSS (new pages)
+    - icon: material/update
+      link: https://rorywag.github.io/sleuthifer-blog/feed_rss_updated.xml
+      name: RSS feed of all page updates
 
 markdown_extensions:
   - admonition
@@ -59,7 +82,7 @@ markdown_extensions:
       line_spans: __span
       pygments_lang_class: true
 
-# Mirrors docs/SUMMARY.md (the GitBook table of contents).
+# Mirrors docs/SUMMARY.md (the GitBook table of contents), plus the RSS subscribe link.
 nav:
   - What is this?: README.md
   - Digital Forensics:
@@ -84,3 +107,4 @@ nav:
       - TBC: kql-for-sentinel/tbc.md
   - Tools: tools.md
   - Useful Links: useful-links.md
+  - Subscribe via RSS: https://rorywag.github.io/sleuthifer-blog/feed_rss_created.xml

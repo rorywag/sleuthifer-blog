@@ -19,12 +19,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # The RSS and revision-date plugins read page dates from the full git history.
+          fetch-depth: 0
 
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: requirements.txt
+
+      # System libraries for the social plugin's card rendering (Material's documented list).
+      - name: Install image libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev pngquant
 
       - name: Install dependencies
         run: pip install -r requirements.txt
