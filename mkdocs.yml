@@ -3,6 +3,11 @@ site_description: Notes on digital forensics, incident response, memory analysis
 site_url: https://rorywag.github.io/sleuthifer-blog/
 repo_url: https://github.com/rorywag/sleuthifer-blog
 repo_name: rorywag/sleuthifer-blog
+# Shown in the footer of every page. Credits the Twemoji ogre used as the logo (CC-BY 4.0).
+copyright: >-
+  The ogre logo is the <a href="https://github.com/jdecked/twemoji">Twemoji</a> ogre emoji
+  (U+1F479), © Twitter, Inc and other contributors, licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>.
 edit_uri: edit/main/docs/
 
 docs_dir: docs
@@ -16,7 +21,7 @@ exclude_docs: |
 theme:
   name: material
   custom_dir: overrides
-  # Ogre emoji (U+1F479) from Twemoji, CC-BY 4.0. See the repo README.
+  # Ogre emoji (U+1F479) from Twemoji, CC-BY 4.0. Credited in the site footer (copyright below).
   logo: assets/images/logo.png
   favicon: assets/images/favicon.ico
   palette:
@@ -136,8 +141,6 @@ nav:
       - Threat Intelligence & Intrusion Analysis: ir/threat-intelligence.md
   - Memory Analysis:
       - "Part 1: Memory and Volatility": memory-analysis/part1-memory-and-volatility.md
-  - KQL for Sentinel:
-      - TBC: kql-for-sentinel/tbc.md
   - Detections: detections/
   - Tools: tools.md
   - Useful Links: useful-links.md
