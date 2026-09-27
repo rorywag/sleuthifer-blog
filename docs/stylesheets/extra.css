@@ -51,12 +51,21 @@
   --sleuth-surface-shadow: 0 0.05rem 0.15rem rgba(0, 0, 0, 0.06), 0 0.2rem 0.8rem rgba(0, 0, 0, 0.06);
 }
 
-/* Dark mode: page a step darker and surface a step lighter than the default
-   slate background (14%), with no white. Code blocks (18%) stay lighter still. */
+/* Dark mode, no white. Body text is Material's foreground at 82% opacity. The panel
+   is lightened to 20%, where body text measures about 7.6:1 against it (WCAG AA
+   needs 4.5:1; 7:1 is AAA), and the page is darkened to 8% for more lift. Code
+   blocks sit a step above the panel (23%) so they stay distinct. */
 [data-md-color-scheme="slate"] {
-  --sleuth-page-bg: hsla(var(--md-hue), 15%, 11%, 1);
-  --sleuth-surface-bg: hsla(var(--md-hue), 15%, 16%, 1);
-  --sleuth-surface-shadow: 0 0.05rem 0.15rem rgba(0, 0, 0, 0.3), 0 0.2rem 1rem rgba(0, 0, 0, 0.25);
+  --sleuth-page-bg: hsla(var(--md-hue), 15%, 8%, 1);
+  --sleuth-surface-bg: hsla(var(--md-hue), 15%, 20%, 1);
+  --sleuth-code-bg: hsla(var(--md-hue), 15%, 23%, 1);
+  --sleuth-surface-shadow: 0 0.05rem 0.15rem rgba(0, 0, 0, 0.35), 0 0.2rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+/* Keep code blocks lighter than the dark panel. The scheme attribute is on <body>
+   itself, so it's part of the body selector rather than an ancestor. */
+body[data-md-color-scheme="slate"]:not(:has(.sleuth-hero)) .md-content__inner {
+  --md-code-bg-color: var(--sleuth-code-bg);
 }
 
 body:not(:has(.sleuth-hero)) {
