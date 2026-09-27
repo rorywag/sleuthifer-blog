@@ -23,10 +23,6 @@
 
 * [Part 1: Memory and Volatility](memory-analysis/part1-memory-and-volatility.md)
 
-## KQL for Sentinel
-
-* [TBC](kql-for-sentinel/tbc.md)
-
 ***
 
 * [Tools](tools.md)
