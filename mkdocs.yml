@@ -77,18 +77,20 @@ plugins:
       abstract_chars_count: 0
       # Generated detection pages carry their own dates: "date" from the detection's
       # Date header, "updated" from its last commit in KQL-Detections. Pages without
-      # these keys still use this repo's git history.
+      # these keys still use this repo's git history. Detections are currently kept
+      # out of the feeds (match_path below); this stays so they date correctly if
+      # they're ever included again.
       date_from_meta:
         as_creation: date
         as_update: updated
-      # Feeds list content posts only. Matched against each page's source path.
-      # Landing pages are README.md (or index.md) at any depth, so new posts are
-      # included and new section overviews excluded without editing this. Also
-      # excluded: Tools, Useful Links and the generated Detections overview
-      # (detections/index.md) and by-tactic listing. Individual detections stay in.
-      # The 404 page and the Subscribe via RSS nav link aren't markdown pages, so
-      # they never reach the feeds.
-      match_path: '^(?!(?:.*/)?(?:README|index)\.md$|(?:tools|useful-links)\.md$|detections/tactics\.md$).+\.md$'
+      # Feeds list written notes and articles only. Matched against each page's source
+      # path. Excluded: the home page and top-level section overviews (README.md or
+      # index.md at the root or one folder deep), the whole detections/ tree, Tools and
+      # Useful Links. Everything deeper is included, so sub-section landings that are
+      # real articles (File Carving, FTK Imager, Wireshark) and any new post appear
+      # without editing this. The 404 page and the Subscribe via RSS nav link aren't
+      # markdown pages, so they never reach the feeds.
+      match_path: '^(?!(?:[^/]+/)?(?:README|index)\.md$|detections/|(?:tools|useful-links)\.md$).+\.md$'
       image: https://rorywag.github.io/sleuthifer-blog/assets/images/logo.png
   # Preview images for links shared on LinkedIn, Slack, etc. Needs mkdocs-material[imaging]
   # and the cairo/freetype system libraries.
