@@ -44,10 +44,25 @@ theme:
 
 plugins:
   - search
+  # Builds the Detections section from rorywag/KQL-Detections at build time,
+  # in memory only. See scripts/gen_detections.py.
+  - gen-files:
+      scripts:
+        - scripts/gen_detections.py
+  # Expands the "detections/" nav entry from the generated detections/NAV.md. Not
+  # SUMMARY.md: literate-nav would pick up the GitBook docs/SUMMARY.md as the whole nav.
+  - literate-nav:
+      nav_file: NAV.md
+  # Tactic tags on detection pages, listed on detections/tactics.md.
+  - tags
   # Dates come from git history, so the deploy workflow checks out with fetch-depth: 0.
   - git-revision-date-localized:
       type: date
       fallback_to_build_date: true
+      # Generated detection pages have no history in this repo; their dates come
+      # from the detection header and the KQL-Detections git log instead.
+      exclude:
+        - detections/*
   # Writes feed_rss_created.xml (new pages only) and feed_rss_updated.xml (every change).
   # The created feed is the main subscribe link (nav + footer); the updated feed is footer only.
   - rss:
@@ -55,6 +70,15 @@ plugins:
       # fallback to the first N characters of markdown, where tab and code markup leaked
       # into excerpts. A page with no description now fails the strict build.
       abstract_chars_count: 0
+      # Generated detection pages carry their own dates: "date" from the detection's
+      # Date header, "updated" from its last commit in KQL-Detections. Pages without
+      # these keys still use this repo's git history.
+      date_from_meta:
+        as_creation: date
+        as_update: updated
+      # The generated overview and tag listing change on every build, so keep them
+      # out of the feeds; the detection pages themselves stay in.
+      match_path: '^(?!detections/(index|tactics)\.md$).*'
       image: https://rorywag.github.io/sleuthifer-blog/assets/images/logo.png
   # Preview images for links shared on LinkedIn, Slack, etc. Needs mkdocs-material[imaging]
   # and the cairo/freetype system libraries.
@@ -62,6 +86,7 @@ plugins:
 
 hooks:
   - hooks/rss_social_cards.py
+  - hooks/exclude_generated_nav.py
 
 extra:
   social:
@@ -113,6 +138,7 @@ nav:
       - "Part 1: Memory and Volatility": memory-analysis/part1-memory-and-volatility.md
   - KQL for Sentinel:
       - TBC: kql-for-sentinel/tbc.md
+  - Detections: detections/
   - Tools: tools.md
   - Useful Links: useful-links.md
   - Subscribe via RSS: https://rorywag.github.io/sleuthifer-blog/feed_rss_created.xml
