@@ -92,6 +92,10 @@ plugins:
       # markdown pages, so they never reach the feeds.
       match_path: '^(?!(?:[^/]+/)?(?:README|index)\.md$|detections/|(?:tools|useful-links)\.md$).+\.md$'
       image: https://rorywag.github.io/sleuthifer-blog/assets/images/logo.png
+      # No XSLT: the default ("auto") adds an <?xml-stylesheet?> reference to rss.xsl
+      # so browsers render the feed as a page, and browsers now show a deprecation
+      # warning for XSLT. An empty value serves the feeds as plain XML.
+      stylesheet: ""
   # Preview images for links shared on LinkedIn, Slack, etc. Needs mkdocs-material[imaging]
   # and the cairo/freetype system libraries.
   - social
