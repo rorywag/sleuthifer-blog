@@ -1,12 +1,16 @@
 name: Deploy site to GitHub Pages
 
+# The Detections section is built from rorywag/KQL-Detections at build time, so
+# detection updates arrive via the nightly schedule or a manual run (Actions tab >
+# Deploy site to GitHub Pages > Run workflow). Pushes to main deploy immediately.
 on:
   push:
     branches: [main]
-  # Sent by rorywag/KQL-Detections on every push, so the Detections section
-  # rebuilds when a detection changes. See integrations/kql-detections/README.md.
-  repository_dispatch:
-    types: [kql-detections-updated]
+  schedule:
+    # 15:07 UTC daily: early morning in New Zealand (03:07 NZST, 04:07 NZDT).
+    # Off the top of the hour, when GitHub's scheduled runs are most often delayed.
+    - cron: "7 15 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: read
