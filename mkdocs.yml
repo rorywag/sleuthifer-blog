@@ -85,12 +85,12 @@ plugins:
         as_update: updated
       # Feeds list written notes and articles only. Matched against each page's source
       # path. Excluded: the home page and top-level section overviews (README.md or
-      # index.md at the root or one folder deep), the whole detections/ tree, Tools and
-      # Useful Links. Everything deeper is included, so sub-section landings that are
-      # real articles (File Carving, FTK Imager, Wireshark) and any new post appear
-      # without editing this. The 404 page and the Subscribe via RSS nav link aren't
-      # markdown pages, so they never reach the feeds.
-      match_path: '^(?!(?:[^/]+/)?(?:README|index)\.md$|detections/|(?:tools|useful-links)\.md$).+\.md$'
+      # index.md at the root or one folder deep), the whole detections/ tree, Tools,
+      # Useful Links and the Subscribe page. Everything deeper is included, so
+      # sub-section landings that are real articles (File Carving, FTK Imager,
+      # Wireshark) and any new post appear without editing this. The 404 page isn't a
+      # markdown page, so it never reaches the feeds.
+      match_path: '^(?!(?:[^/]+/)?(?:README|index)\.md$|detections/|(?:tools|useful-links|subscribe)\.md$).+\.md$'
       image: https://rorywag.github.io/sleuthifer-blog/assets/images/logo.png
       # No XSLT: the default ("auto") adds an <?xml-stylesheet?> reference to rss.xsl
       # so browsers render the feed as a page, and browsers now show a deprecation
@@ -172,4 +172,4 @@ nav:
   - Detections: detections/
   - Tools: tools.md
   - Useful Links: useful-links.md
-  - Subscribe via RSS: https://rorywag.github.io/sleuthifer-blog/feed_rss_created.xml
+  - Subscribe via RSS: subscribe.md
