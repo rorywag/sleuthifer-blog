@@ -18,13 +18,13 @@ In nearly if not all Incident Response engagements I work on, PowerShell is used
 
 The name of the file is "ConsoleHost\_history.txt and can be found in the location below.
 
-```
+```powershell
 $env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
 ```
 
 It is specific to each user profile. For example, if I were wanting to find my specific PowerShell history I would search for the below location and file.
 
-```
+```text
 C:\Users\sleuthifer\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
 ```
 

@@ -50,7 +50,11 @@ Moving to the top of the pyramid are Tactics, Techniques and Procedures (TTP's).
 
 On the other hand, it is difficult for attackers to change their TTP's as it takes **time**, **effort** and **resources** but the payoff is worth it. We will talk later about this last sentence in the "The Cyber Kill Chain" section.
 
-<div align="center"><img src="../.gitbook/assets/pyramid-of-pain-david-bianco.png" alt="The Pyramid of Pain"></div>
+<div align="center" markdown>
+
+![The Pyramid of Pain](../.gitbook/assets/pyramid-of-pain-david-bianco.png)
+
+</div>
 
 ## The Cyber Kill Chain
 
@@ -126,16 +130,16 @@ The topics covered above will give you a stronger understanding of how attacks c
 
 ## _References_
 
-{% embed url="https://otx.alienvault.com/" %}
+<https://otx.alienvault.com/>
 
-{% embed url="https://www.logpoint.com/en/blog/behavioral-approach-to-security/" %}
+<https://www.logpoint.com/en/blog/behavioral-approach-to-security/>
 
-{% embed url="https://www.bulletproof.co.uk/blog/what-is-the-cyber-kill-chain" %}
+<https://www.bulletproof.co.uk/blog/what-is-the-cyber-kill-chain>
 
-{% embed url="https://www.abstractforward.com/podcast/abstract-forward-podcast-8-iam-self-care-defense-in-depth-with-chris-roberts/" %}
+<https://www.abstractforward.com/podcast/abstract-forward-podcast-8-iam-self-care-defense-in-depth-with-chris-roberts/>
 
-{% embed url="https://cybersecportal.wordpress.com/2016/02/01/diamond-model-of-threat-intelligence/" %}
+<https://cybersecportal.wordpress.com/2016/02/01/diamond-model-of-threat-intelligence/>
 
-{% embed url="https://cybersecurity.att.com/blogs/security-essentials/digital-forensics-according-to-the-forza-model-and-diamond-model-for-intrusion-analysis" %}
+<https://cybersecurity.att.com/blogs/security-essentials/digital-forensics-according-to-the-forza-model-and-diamond-model-for-intrusion-analysis>
 
-{% embed url="http://www.activeresponse.org/tag/diamond-model/" %}
+<http://www.activeresponse.org/tag/diamond-model/>

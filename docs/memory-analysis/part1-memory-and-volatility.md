@@ -40,7 +40,7 @@ When first looking at volatility, we can use the command "vol.py -h" shown in th
 
 All Volatility commands are based on the same command and only vary depending on the plugin you use which will determine if you are required to provide other arguments.
 
-```
+```bash
 vol.py -f [image] profile=[profile] [plugin]
 ```
 
@@ -50,13 +50,13 @@ Our first question is what version of Windows was in use when the RAM was captur
 
 The below command can be used to identify what profiles are supported in the version of Volatility you are using.
 
-```
+```bash
 vol.py --info | more
 ```
 
 The output of this command for Volatility 2.6.1 at the time of writing this article are outlined below and as we can see there is good support from Windows XP through to Windows 10.
 
-```
+```text
 VistaSP0x64           - A Profile for Windows Vista SP0 x64
 VistaSP0x86           - A Profile for Windows Vista SP0 x86
 VistaSP1x64           - A Profile for Windows Vista SP1 x64
@@ -125,13 +125,13 @@ In our case, as we haven't created the RAM dump and as such we do not know what 
 
 Fortunately, if for some reason or other we didn't know what version of Windows the RAM dump came from then we can use the below command to ask Volatility to attempt to identify the version.
 
-```
+```bash
 vol.py -f <path to image> imageinfo
 ```
 
 This can take time in some cases but below is the snipped output from the terminal. As we can see the first suggested profile is 'Win10x64\_17134'. Therefore a good bet is to try that profile first and work your way through the other suggestions if the first doesn't work.
 
-```
+```text
 Suggested Profile(s) : Win10x64_17134, Win10x64_14393, Win10x64_10586, Win10x64_16299, Win2016x64_14393, Win10x64_17763, Win10x64_15063 (Instantiated with Win10x64_15063)
 ```
 
@@ -333,7 +333,7 @@ Next, looking at the "Remote Address' column we notice two addresses with establ
 
 The UserAssist artifact tracks executed GUI programs and it is an incredibly useful piece in building a picture of what has occurred on a system. It is found in Windows systems at the location below if you are completing disk forensics.
 
-```
+```text
 NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist\{GUID}\Coun
 ```
 
@@ -385,17 +385,17 @@ Finally, a reminder that memory analysis and disk forensics should complement ea
 
 ## _References_
 
-{% embed url="https://www.cyber.gov.au/" %}
+<https://www.cyber.gov.au/>
 
-{% embed url="https://www.bsidesau.com.au/" %}
+<https://www.bsidesau.com.au/>
 
-{% embed url="https://www.cyber.gov.au/acsc/view-all-content/news/acsc-cyber-security-challenge" %}
+<https://www.cyber.gov.au/acsc/view-all-content/news/acsc-cyber-security-challenge>
 
-{% embed url="https://www.volatilityfoundation.org/" %}
+<https://www.volatilityfoundation.org/>
 
-{% embed url="https://remnux.org/" %}
+<https://remnux.org/>
 
-{% embed url="https://zeltser.com/" %}
+<https://zeltser.com/>
 
-{% embed url="https://github.com/Velocidex/WinPmem" %}
+<https://github.com/Velocidex/WinPmem>
 
