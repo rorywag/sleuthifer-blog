@@ -17,7 +17,7 @@
     "Rawr. Back to the logs.",
     "Ogres have layers. So do disk images.",
     "No IOCs here, just a mask.",
-    "Hash verified: definitely an ogre.",
+    "Hash verified: definitely a mask.",
     "You found me. Chain of custody noted.",
     "I only bite malware."
   ];
