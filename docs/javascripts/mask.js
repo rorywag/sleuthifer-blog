@@ -1,9 +1,9 @@
-/* The ogre's small behaviours: an idle bob (CSS), an occasional blink, a wiggle
+/* The mask's small behaviours: an idle bob (CSS), an occasional blink, a wiggle
    on hover and a spin plus a short message on click. Applies to the header logo
-   and the larger hero ogre on the home page.
+   and the larger hero mask on the home page.
 
    Material's document$ emits on first load and again after every instant
-   navigation, so setup runs per page. Each ogre is wrapped once and marked, and
+   navigation, so setup runs per page. Each mask is wrapped once and marked, and
    blink timers stop by themselves when their image leaves the page.
 
    With prefers-reduced-motion set there's no idle animation, blinking, wiggle
@@ -15,7 +15,7 @@
 
   var MESSAGES = [
     "Rawr. Back to the logs.",
-    "Ogres have layers. So do disk images.",
+    "Every mask hides something. So do disk images.",
     "No IOCs here, just a mask.",
     "Hash verified: definitely a mask.",
     "You found me. Chain of custody noted.",
@@ -26,10 +26,10 @@
     return new URL("logo-blink.png", img.src).href;
   }
 
-  function scheduleBlink(ogre, openSrc, closedSrc, minMs, maxMs) {
+  function scheduleBlink(mask, openSrc, closedSrc, minMs, maxMs) {
     var wait = minMs + Math.random() * (maxMs - minMs);
     window.setTimeout(function () {
-      var img = ogre.img;
+      var img = mask.img;
       if (!img.isConnected) return;
       if (!reducedMotion.matches && !document.hidden) {
         var blinks = Math.random() < 0.2 ? 2 : 1;
@@ -41,41 +41,41 @@
           }, 130);
         })(blinks);
       }
-      scheduleBlink(ogre, openSrc, closedSrc, minMs, maxMs);
+      scheduleBlink(mask, openSrc, closedSrc, minMs, maxMs);
     }, wait);
   }
 
   function play(body, name) {
     if (reducedMotion.matches) return;
-    body.classList.remove("sleuth-ogre--wiggle", "sleuth-ogre--spin");
+    body.classList.remove("sleuth-mask--wiggle", "sleuth-mask--spin");
     void body.offsetWidth; /* restart the animation if it's already running */
-    body.classList.add("sleuth-ogre--" + name);
+    body.classList.add("sleuth-mask--" + name);
   }
 
   function say(wrap) {
-    var old = wrap.querySelector(".sleuth-ogre__say");
+    var old = wrap.querySelector(".sleuth-mask__say");
     if (old) old.remove();
     var bubble = document.createElement("span");
-    bubble.className = "sleuth-ogre__say";
+    bubble.className = "sleuth-mask__say";
     bubble.setAttribute("role", "status");
     bubble.textContent = MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
     wrap.appendChild(bubble);
     window.setTimeout(function () {
-      bubble.classList.add("sleuth-ogre__say--out");
+      bubble.classList.add("sleuth-mask__say--out");
       window.setTimeout(function () { bubble.remove(); }, 300);
     }, 2600);
   }
 
   function setup(img, kind) {
-    if (img.dataset.sleuthOgre) return;
-    img.dataset.sleuthOgre = kind;
+    if (img.dataset.sleuthMask) return;
+    img.dataset.sleuthMask = kind;
 
     /* wrap holds the message bubble; body inside it takes the wiggle and spin,
-       so the message stays level while the ogre moves. */
+       so the message stays level while the mask moves. */
     var wrap = document.createElement("span");
-    wrap.className = "sleuth-ogre sleuth-ogre--" + kind;
+    wrap.className = "sleuth-mask sleuth-mask--" + kind;
     var body = document.createElement("span");
-    body.className = "sleuth-ogre__body";
+    body.className = "sleuth-mask__body";
     img.parentNode.insertBefore(wrap, img);
     wrap.appendChild(body);
     body.appendChild(img);
@@ -85,10 +85,10 @@
     new Image().src = closedSrc; /* preload, so the first blink doesn't flicker */
 
     wrap.addEventListener("mouseenter", function () {
-      if (!body.classList.contains("sleuth-ogre--spin")) play(body, "wiggle");
+      if (!body.classList.contains("sleuth-mask--spin")) play(body, "wiggle");
     });
     body.addEventListener("animationend", function (event) {
-      if (event.target === body) body.classList.remove("sleuth-ogre--wiggle", "sleuth-ogre--spin");
+      if (event.target === body) body.classList.remove("sleuth-mask--wiggle", "sleuth-mask--spin");
     });
 
     function poke() {
@@ -109,7 +109,7 @@
     } else {
       img.setAttribute("role", "button");
       img.setAttribute("tabindex", "0");
-      img.setAttribute("title", "Poke the ogre");
+      img.setAttribute("title", "Poke the mask");
       img.addEventListener("click", poke);
       img.addEventListener("keydown", function (event) {
         if (event.key === "Enter" || event.key === " ") {
@@ -119,9 +119,9 @@
       });
     }
 
-    var ogre = { img: img };
-    if (kind === "header") scheduleBlink(ogre, openSrc, closedSrc, 6000, 14000);
-    else scheduleBlink(ogre, openSrc, closedSrc, 3000, 8000);
+    var mask = { img: img };
+    if (kind === "header") scheduleBlink(mask, openSrc, closedSrc, 6000, 14000);
+    else scheduleBlink(mask, openSrc, closedSrc, 3000, 8000);
   }
 
   function init() {
