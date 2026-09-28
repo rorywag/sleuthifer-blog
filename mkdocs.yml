@@ -42,11 +42,11 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-  # Body text Inter and code JetBrains Mono, loaded from Google Fonts by Material.
-  # Headings use Space Grotesk, loaded via extra_css below.
+  # IBM Plex Sans for body text and headings, IBM Plex Mono for code (fenced and
+  # inline). Material loads both from Google Fonts.
   font:
-    text: Inter
-    code: JetBrains Mono
+    text: IBM Plex Sans
+    code: IBM Plex Mono
   features:
     - navigation.sections
     - navigation.indexes
@@ -133,7 +133,6 @@ extra:
 
 # Home page hero and card layout.
 extra_css:
-  - https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap
   - stylesheets/extra.css
 
 markdown_extensions:

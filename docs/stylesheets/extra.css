@@ -66,13 +66,6 @@
   box-shadow: 0 0 0 0.2rem var(--sleuth-red-tint);
 }
 
-/* ---- Fonts ------------------------------------------------------------------
-   Inter (text) and JetBrains Mono (code, fenced and inline) come from theme.font.
-   Headings use Space Grotesk, loaded from Google Fonts via extra_css. */
-.md-typeset :is(h1, h2, h3, h4, h5, h6) {
-  font-family: "Space Grotesk", var(--md-text-font-family);
-}
-
 /* Home page landing layout (docs/README.md). Colours come from Material's
    theme variables so the page follows the light and dark palettes. */
 
