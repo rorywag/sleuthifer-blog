@@ -1,4 +1,8 @@
 ---
+date: 2026-09-27
+categories:
+  - Incident Response
+slug: youve-been-hit-popped-or-breached
 description: >-
   A quick and frank article on what should happen if you are unfortunate to be
   involved in a cyber security incident.
@@ -7,6 +11,8 @@ description: >-
 # You've been hit, popped or breached?
 
 It's only a matter of time before you are involved with a cybersecurity incident. That's not fear-mongering, that's the truth. Businesses and organisations that respect this will be at the forefront of planning to prevent it, but even the most prepared are fallible and adversaries are evolving on a day-to-day basis.
+
+<!-- more -->
 
 > &#x20;**Just As Water Retains No Constant Shape, In Warfare There Are No Constant Conditions - Sun Tzu**
 
@@ -85,4 +91,3 @@ Furthermore, a cyber insurance policy can help with the costs and expertise invo
 **One final point that I think is important.**&#x20;
 
 It is easy to look to the side and blame someone else for what went wrong but it is never the failure of a single person but the failure of policies, procedures, and planning. Look to do better, you're a team together :)
-

@@ -1,4 +1,8 @@
 ---
+date: 2026-09-27
+categories:
+  - Digital Forensics
+slug: powershell-history
 description: Where to find the PowerShell history file.
 ---
 
@@ -7,6 +11,8 @@ description: Where to find the PowerShell history file.
 ## What is PowerShell?
 
 I'm guessing you already know what it is if you are here but I like to keep these articles as informational as possible for everyone interested to read them.&#x20;
+
+<!-- more -->
 
 Quickly let's cover off what PowerShell is then. It is a command-line shell provided by Microsoft within the Windows operating system (OS). It is typically used for querying information within the OS, scripting and automating tasks.
 
@@ -34,7 +40,7 @@ The ConsoleHost\_history from my understanding is created when a user first inte
 
 The contents of the file do not timestamp specific commands being run so the next best thing to go off is the $standard\_information modified timestamp, which is the timestamp you would see when using file explorer in Windows as shown below.
 
-![ConsoleHost\_history file with created and modified timestamps](<../.gitbook/assets/image (3).png>)
+![ConsoleHost\_history file with created and modified timestamps](<../../.gitbook/assets/image (3).png>)
 
 The modified timestamp will tell us at what time the last command in the ConsoleHost\_history.txt file was executed.
 
@@ -48,4 +54,3 @@ A downfall of this file is like many others it can be deleted or actions may not
 
 It is possible to enable a logging feature named "Script Block Logging" which captures script/commands that are processed/executed in PowerShell and can be viewed in the Windows event log, preferably these logs would be aggregated along with other logging information somewhere else to avoid them being deleted easily. \
 Check out details regarding this feature on the Microsoft Documentation website [_**here**_](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows?view=powershell-7.1#enabling-script-block-logging) or the FireEye website [_**here**_](https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html).
-

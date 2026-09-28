@@ -13,7 +13,7 @@ hide:
 
 <p class="sleuth-hero__tagline">Digital forensics, incident response and detection notes, kept in the open.</p>
 
-[Browse the notes](digital-forensics/README.md){ .md-button .md-button--primary }
+[Browse the notes](blog/index.md){ .md-button .md-button--primary }
 [Explore detections](detections/index.md){ .md-button }
 
 </div>
@@ -22,7 +22,7 @@ hide:
 
 <div class="card" markdown>
 
-[:material-harddisk:{ .lg .middle } __Digital Forensics__](digital-forensics/README.md)
+[:material-harddisk:{ .lg .middle } __Digital Forensics__](blog/category/digital-forensics.md)
 
 ---
 
@@ -32,7 +32,7 @@ File carving, imaging and artefact analysis.
 
 <div class="card" markdown>
 
-[:material-fire-alert:{ .lg .middle } __Incident Response__](ir/README.md)
+[:material-fire-alert:{ .lg .middle } __Incident Response__](blog/category/incident-response.md)
 
 ---
 
@@ -42,7 +42,7 @@ Triage and response when you've been hit.
 
 <div class="card" markdown>
 
-[:material-memory:{ .lg .middle } __Memory Analysis__](memory-analysis/README.md)
+[:material-memory:{ .lg .middle } __Memory Analysis__](blog/category/memory-analysis.md)
 
 ---
 

@@ -1,10 +1,16 @@
 ---
+date: 2026-09-27
+categories:
+  - Memory Analysis
+slug: part1-memory-and-volatility
 description: An introduction to examining RAM with volatility
 ---
 
 # Part 1: Memory and Volatility
 
 The [_Australian Cyber Security Centre_](https://www.cyber.gov.au/) released a "simulated cyber security challenge" which was first used at a security conference called [_BSides Canberra_](https://www.bsidesau.com.au/) 2021. It is an awesome challenge to have a go at and provides questions and answers so you can test your knowledge. The challenge can be found [_here_](https://www.cyber.gov.au/acsc/view-all-content/news/acsc-cyber-security-challenge)_._
+
+<!-- more -->
 
 We will examine the memory file provided in the challenge using Volatility. In doing so, we will explore the functionality and features of Volatility that can be used when examining memory files in an incident response engagement.
 
@@ -14,7 +20,7 @@ Random Access Memory, or RAM, is the memory that a computer uses to temporarily 
 
 For example, you may have noticed when running Google Chrome that if you look at the task manager, Chrome tends to use a lot of RAM. This is because Chrome uses the RAM to store information related to running the program. The specifics of why it uses so much? I'm not sure but many a joke has been had as a result.
 
-![](../.gitbook/assets/chrome-ram-eater.jpg)
+![](../../.gitbook/assets/chrome-ram-eater.jpg)
 
 As mentioned above RAM is only temporary storage, or what we refer to as volatile, meaning that when the computer is turned off, the RAM is erased too.
 
@@ -36,7 +42,7 @@ _Note: Some of the output from volatility in this article is lengthy but I belie
 
 When first looking at volatility, we can use the command "vol.py -h" shown in the snip below to identify what its features, arguments and plugins are.
 
-![vol.py -h output](../.gitbook/assets/Volatility-overview-terminal.PNG)
+![vol.py -h output](../../.gitbook/assets/Volatility-overview-terminal.PNG)
 
 All Volatility commands are based on the same command and only vary depending on the plugin you use which will determine if you are required to provide other arguments.
 
@@ -398,4 +404,3 @@ Finally, a reminder that memory analysis and disk forensics should complement ea
 <https://zeltser.com/>
 
 <https://github.com/Velocidex/WinPmem>
-

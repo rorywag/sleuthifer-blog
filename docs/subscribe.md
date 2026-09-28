@@ -4,7 +4,7 @@ description: Follow new Sleuthifer posts with an RSS feed reader.
 
 # Subscribe via RSS
 
-The Sleuthifer RSS feed lists new notes and articles as they're published. Detections aren't included.
+The Sleuthifer RSS feed lists new blog posts as they're published. Detections and the other pages outside the blog aren't included.
 
 To subscribe, copy this address into your feed reader:
 
