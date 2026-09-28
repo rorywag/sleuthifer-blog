@@ -110,6 +110,27 @@
   border-color: var(--sleuth-red);
 }
 
+/* Home page section cards in even rows: Material's auto-fit grid packs 4 across
+   on desktops and leaves 2 on the second row. Fixed columns instead: 1 on phones,
+   2 on portrait tablets (45em, 720px), 3 from landscape tablets up (60em, 960px),
+   giving two rows of 3. Only the column count changes; gap and card styling are
+   Material's. */
+.md-typeset .grid.sleuth-cards {
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 45em) {
+  .md-typeset .grid.sleuth-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 60em) {
+  .md-typeset .grid.sleuth-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .sleuth-intro {
   margin-top: 1.5rem;
   text-align: center;
