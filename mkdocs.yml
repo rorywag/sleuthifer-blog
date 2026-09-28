@@ -12,11 +12,10 @@ edit_uri: edit/main/docs/
 
 docs_dir: docs
 
-# MkDocs skips dot-directories by default. GitBook stores every image in
-# .gitbook/assets, so re-include it. SUMMARY.md only drives the nav below.
+# MkDocs skips dot-directories by default. The images from the GitBook export
+# live in .gitbook/assets, so re-include it.
 exclude_docs: |
   !.gitbook/
-  SUMMARY.md
 
 theme:
   name: material
@@ -48,6 +47,9 @@ theme:
     text: IBM Plex Sans
     code: IBM Plex Mono
   features:
+    # Top-level nav entries become header tabs; the sidebar shows only the
+    # current tab's pages.
+    - navigation.tabs
     - navigation.sections
     - navigation.indexes
     - navigation.top
@@ -57,6 +59,21 @@ theme:
 
 plugins:
   - search
+  # Posts live in docs/blog/posts/ and are served at /blog/<slug>/. Each post takes
+  # one category (Digital Forensics, Incident Response or Memory Analysis); the
+  # category pages at /blog/category/<name>/ are the topical indexes, with their
+  # intro text in docs/blog/category/. The archive (by month) is off because every
+  # post carries the same date, so it would be a single entry.
+  - blog:
+      blog_toc: true
+      post_url_format: "{slug}"
+      post_readtime: true
+      archive: false
+      authors: false
+      categories_allowed:
+        - Digital Forensics
+        - Incident Response
+        - Memory Analysis
   # Builds the Detections section from rorywag/KQL-Detections at build time,
   # in memory only. See scripts/gen_detections.py.
   - gen-files:
@@ -83,22 +100,14 @@ plugins:
       # fallback to the first N characters of markdown, where tab and code markup leaked
       # into excerpts. A page with no description now fails the strict build.
       abstract_chars_count: 0
-      # Generated detection pages carry their own dates: "date" from the detection's
-      # Date header, "updated" from its last commit in KQL-Detections. Pages without
-      # these keys still use this repo's git history. Detections are currently kept
-      # out of the feeds (match_path below); this stays so they date correctly if
-      # they're ever included again.
+      # Blog posts set "date" in front matter; "updated" falls back to git history.
       date_from_meta:
         as_creation: date
         as_update: updated
-      # Feeds list written notes and articles only. Matched against each page's source
-      # path. Excluded: the home page and top-level section overviews (README.md or
-      # index.md at the root or one folder deep), the whole detections/ tree, Tools,
-      # Useful Links and the Subscribe page. Everything deeper is included, so
-      # sub-section landings that are real articles (File Carving, FTK Imager,
-      # Wireshark) and any new post appear without editing this. The 404 page isn't a
-      # markdown page, so it never reaches the feeds.
-      match_path: '^(?!(?:[^/]+/)?(?:README|index)\.md$|detections/|(?:tools|useful-links|subscribe)\.md$).+\.md$'
+      # Feeds list blog posts only, matched against each page's source path. Every
+      # other page (home, blog index and categories, Detections, Tools, Useful Links,
+      # Subscribe) stays out without needing to be listed.
+      match_path: '^blog/posts/.+\.md$'
       image: https://rorywag.github.io/sleuthifer-blog/assets/images/logo.png
       # No XSLT: the default ("auto") adds an <?xml-stylesheet?> reference to rss.xsl
       # so browsers render the feed as a page, and browsers now show a deprecation
@@ -112,6 +121,26 @@ plugins:
       cards_layout_options:
         background_color: "#3a5e88"
         color: "#ffffff"
+  # Old article URLs from before the blog (GitBook paths) redirect to their blog
+  # post. Former sub-pages of the merged guides land on their section's heading, and
+  # the old section overviews land on the matching blog category.
+  - redirects:
+      redirect_maps:
+        digital-forensics/README.md: blog/category/digital-forensics.md
+        digital-forensics/cipher.md: blog/posts/cipher.md
+        digital-forensics/powershell-history.md: blog/posts/powershell-history.md
+        digital-forensics/file-carving/README.md: blog/posts/file-carving.md
+        digital-forensics/file-carving/fat32-file-carving.md: blog/posts/file-carving.md#fat32-file-carving
+        digital-forensics/untitled/README.md: blog/posts/ftk-imager.md
+        digital-forensics/untitled/imaging-and-verifying.md: blog/posts/ftk-imager.md#imaging-verifying
+        digital-forensics/wireshark/README.md: blog/posts/wireshark.md
+        digital-forensics/wireshark/protocol-summary-and-dhcp.md: blog/posts/wireshark.md#protocol-summary-and-dhcp
+        digital-forensics/wireshark/simple-mail-transfer-protocol-smtp.md: blog/posts/wireshark.md#follow-tcp-stream-and-smtp
+        ir/README.md: blog/category/incident-response.md
+        ir/youve-been-hit-popped-or-breached.md: blog/posts/youve-been-hit-popped-or-breached.md
+        ir/threat-intelligence.md: blog/posts/threat-intelligence.md
+        memory-analysis/README.md: blog/category/memory-analysis.md
+        memory-analysis/part1-memory-and-volatility.md: blog/posts/part1-memory-and-volatility.md
 
 hooks:
   - hooks/rss_social_cards.py
@@ -157,31 +186,13 @@ markdown_extensions:
       line_spans: __span
       pygments_lang_class: true
 
-# Mirrors docs/SUMMARY.md (the GitBook table of contents), plus the RSS subscribe link.
+# Each top-level entry is a header tab. Blog posts and category pages are added
+# under Blog by the blog plugin; Detections is expanded from its generated NAV.md.
 nav:
-  - What is this?: README.md
-  - Digital Forensics:
-      - digital-forensics/README.md
-      - Cipher (Anti-forensics): digital-forensics/cipher.md
-      - PowerShell History: digital-forensics/powershell-history.md
-      - File Carving:
-          - digital-forensics/file-carving/README.md
-          - FAT32 File Carving: digital-forensics/file-carving/fat32-file-carving.md
-      - FTK Imager:
-          - digital-forensics/untitled/README.md
-          - Imaging & Verifying: digital-forensics/untitled/imaging-and-verifying.md
-      - Wireshark:
-          - digital-forensics/wireshark/README.md
-          - Protocol Summary and DHCP: digital-forensics/wireshark/protocol-summary-and-dhcp.md
-          - Follow TCP Stream and SMTP: digital-forensics/wireshark/simple-mail-transfer-protocol-smtp.md
-  - Incident Response:
-      - ir/README.md
-      - You've been hit, popped or breached?: ir/youve-been-hit-popped-or-breached.md
-      - Threat Intelligence & Intrusion Analysis: ir/threat-intelligence.md
-  - Memory Analysis:
-      - memory-analysis/README.md
-      - "Part 1: Memory and Volatility": memory-analysis/part1-memory-and-volatility.md
+  - Home: README.md
+  - Blog:
+      - blog/index.md
   - Detections: detections/
   - Tools: tools.md
   - Useful Links: useful-links.md
-  - Subscribe via RSS: subscribe.md
+  - Subscribe: subscribe.md

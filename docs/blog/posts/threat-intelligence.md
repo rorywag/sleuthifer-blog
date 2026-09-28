@@ -1,4 +1,8 @@
 ---
+date: 2026-09-27
+categories:
+  - Incident Response
+slug: threat-intelligence
 description: Threat intelligence feeds, IoCs and IoAs, the Pyramid of Pain, the Cyber Kill Chain, MITRE ATT&CK and the Diamond Model.
 ---
 
@@ -7,6 +11,8 @@ description: Threat intelligence feeds, IoCs and IoAs, the Pyramid of Pain, the 
 ## Threat Intelligence
 
 Threat Intelligence is information about threats, threat actors and indicators of compromise that assist cybersecurity teams and individuals prepare against attacks, understand trends and what tactics threat actors used or are currently using&#x20;
+
+<!-- more -->
 
 ## Threat Intelligence Feeds
 
@@ -49,7 +55,7 @@ On the other hand, it is difficult for attackers to change their TTP's as it tak
 
 <div align="center" markdown>
 
-![The Pyramid of Pain](../.gitbook/assets/pyramid-of-pain-david-bianco.png)
+![The Pyramid of Pain](../../.gitbook/assets/pyramid-of-pain-david-bianco.png)
 
 </div>
 
@@ -59,7 +65,7 @@ On the other hand, it is difficult for attackers to change their TTP's as it tak
 
 If defenders can break the chain this can be enough to stop an attack but, further to this is the **time**, **effort** and **resources** it takes for adversaries to complete these phases. If defenders can slow down attackers or prevent them from progressing it may be not worth the adversaries efforts to continue as there are easier targets available for them to successfully achieve their objectives through.
 
-![Lockheed Martin Cyber Kill Chain](../.gitbook/assets/Intrusion_Kill_Chain_-_v2.png)
+![Lockheed Martin Cyber Kill Chain](../../.gitbook/assets/Intrusion_Kill_Chain_-_v2.png)
 
 ### What about the MITRE ATT\&CK framework?
 
@@ -67,7 +73,7 @@ The [MITRE ATT\&CK ](https://attack.mitre.org/)is a framework that is my persona
 
 Understanding both of them will only deepen your knowledge.
 
-![MITRE ATT\&CK framework](../.gitbook/assets/mitre-attack-framework-table.png)
+![MITRE ATT\&CK framework](../../.gitbook/assets/mitre-attack-framework-table.png)
 
 Using the MITRE ATT\&CK framework when conducting forensic reporting is helpful to be able to explain how different artifacts showcase what tactic and technique an adversary used to achived objectives.
 
@@ -109,17 +115,17 @@ Examples of what details relate to the **Adversary:**
 
 Typically we don't just see one event occurring during an incident but multiple and the diagram can be used to chain diamonds together to highlight how the attack flowed and evolved as time goes on.
 
-![The Diamond Model of Intrusion Analysis](../.gitbook/assets/diamondmodel2.png)
+![The Diamond Model of Intrusion Analysis](../../.gitbook/assets/diamondmodel2.png)
 
 In the diagram below we can see an example of how the diamond works when an attack is modelled against it. Meta-features have been added to show the flow of activities and what occurs at each stage.
 
-![The Diamon Model of Intrusion Analysis in play](../.gitbook/assets/diamondmodel.png)
+![The Diamon Model of Intrusion Analysis in play](../../.gitbook/assets/diamondmodel.png)
 
 The above diagram is a simple use of just one diamond being utilised but attacks are rarely simple enough to show everything that has occurred on one diamond. The below diagram shows how one could chain these diamonds together and add meta-features that this diagram doesn't show would tell a clear story of what occurred.&#x20;
 
 This can process can become more complex by identifying other potential paths the attacker could have taken but I'll let you research and dig into this a bit more on your own.
 
-![Diamond Model of Intrusion - Chained](../.gitbook/assets/Cyber-Kill-Chain-and-Diamond-Model-of-regin.png)
+![Diamond Model of Intrusion - Chained](../../.gitbook/assets/Cyber-Kill-Chain-and-Diamond-Model-of-regin.png)
 
 ## Conclusion
 

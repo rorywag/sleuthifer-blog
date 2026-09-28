@@ -198,8 +198,10 @@ body:not(:has(.sleuth-hero)) .md-content__inner {
   }
 }
 
+/* Blog posts swap the nav sidebar for a post sidebar (back link, date, category),
+   whose sticky "Back to index" link needs the same treatment. */
 @media screen and (min-width: 76.25em) {
-  body:not(:has(.sleuth-hero)) .md-sidebar--primary {
+  body:not(:has(.sleuth-hero)) :is(.md-sidebar--primary, .md-sidebar--post) {
     --md-default-bg-color: var(--sleuth-page-bg);
   }
 }

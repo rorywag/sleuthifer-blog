@@ -1,10 +1,16 @@
 ---
+date: 2026-09-27
+categories:
+  - Digital Forensics
+slug: cipher
 description: How Cipher.exe /w overwrites deleted data, tested on a USB drive and checked in FTK Imager.
 ---
 
 # Cipher (Anti-forensics)
 
 Something I came across recently in an incident response engagement was the potential use of "Cipher.exe". Let's take a look at how it works. The testing site is on an exFAT USB but in-depth analysis regarding the exFAT process of deleting files etc will not be discussed today but more so focussed on what Cipher.exe does to the file instead.
+
+<!-- more -->
 
 ## What is Cipher.exe
 
@@ -24,15 +30,15 @@ I will use FTKimager to showcase the process.&#x20;
 
 Having created a folder with a file named "Cipher\_Test.txt" on a USB (exFAT filesystem) we can see how the folder's contents look before anything has occurred. Below we can see the file entry in question beginning at offset 0x0c0.
 
-![Cipher\_Test.txt file before deletion](<../.gitbook/assets/Cipher folder + contents.PNG>)
+![Cipher\_Test.txt file before deletion](<../../.gitbook/assets/Cipher folder + contents.PNG>)
 
 The contents of the file are shown below so we can confirm it is a reasonably normal text file with some content within it.
 
-![Contents of Cipher\_Test.txt](<../.gitbook/assets/Cipher test file.PNG>)
+![Contents of Cipher\_Test.txt](<../../.gitbook/assets/Cipher test file.PNG>)
 
 Now let's delete the file from the USB and see what it looks like. FTKimager makes it easy to determine it is deleted based on the icon to the left of the file name in the File Listing area with the cross through it. Further, there are identifiers in the hex that signify that the file is "not in use".
 
-![Cipher\_Test.txt deleted](<../.gitbook/assets/Cipher test file deleted.PNG>)
+![Cipher\_Test.txt deleted](<../../.gitbook/assets/Cipher test file deleted.PNG>)
 
 Although "deleted" we can still view the contents. Take my word and I'll save some space as I would be posting the same photo you saw above earlier.
 
@@ -46,11 +52,11 @@ cipher.exe/w:f:\Cipher
 
 The first step for Cipher.exe is to write zeros over the deleted (0x00), it then moves to write 255's (0xFF) over the deleted files and finally random letters. Essentially a three-pass wipe of anything that has been deleted rendering it unreadable and of no use.
 
-![Cipher.exe command line output](<../.gitbook/assets/Cipher cmdline.PNG>)
+![Cipher.exe command line output](<../../.gitbook/assets/Cipher cmdline.PNG>)
 
 Once completed I checked back on the file that was originally on the USB, deleted and then Cipher.exe used. As you can see below the deleted file has been completely changed to something that doesn't resemble what it once does.
 
-![Deleted file after Cipher.exe use](<../.gitbook/assets/Cipher file output.PNG>)
+![Deleted file after Cipher.exe use](<../../.gitbook/assets/Cipher file output.PNG>)
 
 ## Conclusion
 
