@@ -16,7 +16,7 @@
   var MESSAGES = [
     "Rawr. Back to the logs.",
     "Ogres have layers. So do disk images.",
-    "No IOCs here, just an ogre.",
+    "No IOCs here, just a mask.",
     "Hash verified: definitely an ogre.",
     "You found me. Chain of custody noted.",
     "I only bite malware."
