@@ -96,7 +96,8 @@ plugins:
         - detections/*
         - README.md
   # Writes feed_rss_created.xml (new pages only) and feed_rss_updated.xml (every change).
-  # Both feeds are listed on docs/subscribe.md, which the nav and the footer RSS icon open.
+  # docs/subscribe.md (opened from the nav and the footer RSS icon) lists the created feed;
+  # the updated feed is still built, so anyone already subscribed to it keeps getting it.
   - rss:
       # Use each page's front-matter description as the item summary. 0 turns off the
       # fallback to the first N characters of markdown, where tab and code markup leaked
