@@ -160,7 +160,7 @@ extra:
       link: https://rorywag.github.io/sleuthifer-blog/subscribe/
       name: Subscribe via RSS
 
-# Home page hero and card layout.
+# Colours, home page hero and the raised content panel.
 extra_css:
   - stylesheets/extra.css
 
@@ -168,7 +168,7 @@ markdown_extensions:
   - admonition
   - attr_list
   - md_in_html
-  # :material-...: and :fontawesome-...: icons, used on the home page cards.
+  # :fontawesome-...: icons, used for the LinkedIn and GitHub links on the home page.
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
