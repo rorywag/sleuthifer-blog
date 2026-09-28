@@ -90,9 +90,11 @@ plugins:
       type: date
       fallback_to_build_date: true
       # Generated detection pages have no history in this repo; their dates come
-      # from the detection header and the KQL-Detections git log instead.
+      # from the detection header and the KQL-Detections git log instead. The home
+      # page is a landing page, so it shows no "last updated" date.
       exclude:
         - detections/*
+        - README.md
   # Writes feed_rss_created.xml (new pages only) and feed_rss_updated.xml (every change).
   # Both feeds are listed on docs/subscribe.md, which the nav and the footer RSS icon open.
   - rss:
@@ -160,7 +162,7 @@ extra:
       link: https://rorywag.github.io/sleuthifer-blog/subscribe/
       name: Subscribe via RSS
 
-# Home page hero and card layout.
+# Colours, home page hero and the raised content panel.
 extra_css:
   - stylesheets/extra.css
 
@@ -168,7 +170,7 @@ markdown_extensions:
   - admonition
   - attr_list
   - md_in_html
-  # :material-...: and :fontawesome-...: icons, used on the home page cards.
+  # :fontawesome-...: icons, used for the LinkedIn and GitHub links on the home page.
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
