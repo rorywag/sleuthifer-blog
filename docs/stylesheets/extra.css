@@ -192,11 +192,3 @@ body:not(:has(.sleuth-hero)) .md-content__inner {
 .md-grid {
   max-width: 76rem;
 }
-
-/* Keep prose at a readable measure as the panel widens: top-level paragraphs,
-   lists and quotes stop at about 90 characters per line in IBM Plex Sans (the
-   line length the narrower layout had). Code blocks, tables, images, admonitions
-   and cards still use the full panel width. */
-.md-typeset.md-content__inner > :is(p, ul, ol, blockquote, dl) {
-  max-width: 40em;
-}
