@@ -90,9 +90,11 @@ plugins:
       type: date
       fallback_to_build_date: true
       # Generated detection pages have no history in this repo; their dates come
-      # from the detection header and the KQL-Detections git log instead.
+      # from the detection header and the KQL-Detections git log instead. The home
+      # page is a landing page, so it shows no "last updated" date.
       exclude:
         - detections/*
+        - README.md
   # Writes feed_rss_created.xml (new pages only) and feed_rss_updated.xml (every change).
   # Both feeds are listed on docs/subscribe.md, which the nav and the footer RSS icon open.
   - rss:
