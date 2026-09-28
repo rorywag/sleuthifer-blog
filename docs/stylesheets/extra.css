@@ -1,6 +1,6 @@
 /* ---- Colours: blue team vs red team ----------------------------------------
    Steel blue is the primary (header, links, primary buttons, chrome). Red is the
-   ogre logo's #dd2e44 toned down (saturation 72% -> 58%) and used sparingly: link
+   mask logo's #dd2e44 toned down (saturation 72% -> 58%) and used sparingly: link
    and button hovers, danger and warning admonitions, and the outlined hero button.
    Link and red shades differ per scheme so text stays at WCAG AA (4.5:1) or better
    on the backgrounds it sits on; mkdocs.yml sets primary/accent to "custom". */
@@ -110,57 +110,57 @@
   border-color: var(--sleuth-red);
 }
 
-/* The ogre's behaviours (docs/javascripts/ogre.js). The script wraps the header
-   logo and the hero ogre in .sleuth-ogre, which holds the click message, with
-   .sleuth-ogre__body inside it. The idle bob or breathe runs on the image and
+/* The mask's behaviours (docs/javascripts/mask.js). The script wraps the header
+   logo and the hero mask in .sleuth-mask, which holds the click message, with
+   .sleuth-mask__body inside it. The idle bob or breathe runs on the image and
    the hover wiggle and click spin on the body, so they combine and the message
    stays level. All motion sits behind prefers-reduced-motion: no-preference. */
-.sleuth-ogre,
-.sleuth-ogre__body {
+.sleuth-mask,
+.sleuth-mask__body {
   position: relative;
   display: inline-block;
   vertical-align: top;
 }
 
-.md-header .sleuth-ogre,
-.md-header .sleuth-ogre__body {
+.md-header .sleuth-mask,
+.md-header .sleuth-mask__body {
   display: block;
 }
 
-.sleuth-ogre--hero img {
+.sleuth-mask--hero img {
   cursor: pointer;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .sleuth-ogre--hero img {
-    animation: sleuth-ogre-bob 4s ease-in-out infinite;
+  .sleuth-mask--hero img {
+    animation: sleuth-mask-bob 4s ease-in-out infinite;
   }
 
-  .sleuth-ogre--header img {
+  .sleuth-mask--header img {
     transform-origin: 50% 100%;
-    animation: sleuth-ogre-breathe 5s ease-in-out infinite;
+    animation: sleuth-mask-breathe 5s ease-in-out infinite;
   }
 
-  .sleuth-ogre--wiggle {
-    animation: sleuth-ogre-wiggle 0.5s ease-in-out;
+  .sleuth-mask--wiggle {
+    animation: sleuth-mask-wiggle 0.5s ease-in-out;
   }
 
-  .sleuth-ogre--spin {
-    animation: sleuth-ogre-spin 0.7s cubic-bezier(0.3, 0, 0.2, 1);
+  .sleuth-mask--spin {
+    animation: sleuth-mask-spin 0.7s cubic-bezier(0.3, 0, 0.2, 1);
   }
 }
 
-@keyframes sleuth-ogre-bob {
+@keyframes sleuth-mask-bob {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-0.2rem); }
 }
 
-@keyframes sleuth-ogre-breathe {
+@keyframes sleuth-mask-breathe {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
 
-@keyframes sleuth-ogre-wiggle {
+@keyframes sleuth-mask-wiggle {
   0%, 100% { transform: rotate(0); }
   20% { transform: rotate(-8deg); }
   40% { transform: rotate(7deg); }
@@ -168,15 +168,15 @@
   80% { transform: rotate(2deg); }
 }
 
-@keyframes sleuth-ogre-spin {
+@keyframes sleuth-mask-spin {
   0% { transform: rotate(0) scale(1); }
   50% { transform: rotate(180deg) scale(1.1); }
   100% { transform: rotate(360deg) scale(1); }
 }
 
 /* The click message: a small bubble in the theme's own colours. Above the hero
-   ogre (clear of the title below it) and under the header logo. */
-.sleuth-ogre__say {
+   mask (clear of the title below it) and under the header logo. */
+.sleuth-mask__say {
   position: absolute;
   bottom: calc(100% + 0.3rem);
   left: 50%;
@@ -196,22 +196,22 @@
   white-space: normal;
   pointer-events: none;
   transform: translateX(-50%);
-  animation: sleuth-ogre-say-in 0.2s ease-out;
+  animation: sleuth-mask-say-in 0.2s ease-out;
   transition: opacity 0.3s;
 }
 
-.md-header .sleuth-ogre__say {
+.md-header .sleuth-mask__say {
   top: calc(100% + 0.4rem);
   bottom: auto;
   left: 0;
   transform: none;
 }
 
-.sleuth-ogre__say--out {
+.sleuth-mask__say--out {
   opacity: 0;
 }
 
-@keyframes sleuth-ogre-say-in {
+@keyframes sleuth-mask-say-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }

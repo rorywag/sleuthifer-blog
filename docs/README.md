@@ -7,7 +7,7 @@ hide:
 
 <div class="sleuth-hero" markdown>
 
-![Sleuthifer ogre logo](assets/images/logo.png){ .sleuth-hero__logo }
+![Sleuthifer mask logo](assets/images/logo.png){ .sleuth-hero__logo }
 
 # Sleuthifer
 
