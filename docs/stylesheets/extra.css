@@ -166,6 +166,13 @@ body:not(:has(.sleuth-hero)) .md-content__inner {
     padding: 0.6rem 0.8rem 1rem;
     border-radius: 0.3rem;
   }
+
+  /* Material bleeds content tab labels (e.g. on Tools) out to the screen edge,
+     capped at 100vw. The panel sits inset, so that ran 8px past the screen and
+     caused sideways scrolling. Cap the row at the panel's width instead. */
+  body:not(:has(.sleuth-hero)) .md-content__inner > .tabbed-set .tabbed-labels {
+    max-width: calc(100% + 1.6rem);
+  }
 }
 
 /* Sticky sidebar headings paint the default background to mask scrolling
