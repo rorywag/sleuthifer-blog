@@ -166,6 +166,10 @@ extra:
 extra_css:
   - stylesheets/extra.css
 
+# The ogre logo's idle, blink, hover and click behaviours (header and home hero).
+extra_javascript:
+  - javascripts/ogre.js
+
 markdown_extensions:
   - admonition
   - attr_list

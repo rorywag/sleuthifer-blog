@@ -110,6 +110,112 @@
   border-color: var(--sleuth-red);
 }
 
+/* The ogre's behaviours (docs/javascripts/ogre.js). The script wraps the header
+   logo and the hero ogre in .sleuth-ogre, which holds the click message, with
+   .sleuth-ogre__body inside it. The idle bob or breathe runs on the image and
+   the hover wiggle and click spin on the body, so they combine and the message
+   stays level. All motion sits behind prefers-reduced-motion: no-preference. */
+.sleuth-ogre,
+.sleuth-ogre__body {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.md-header .sleuth-ogre,
+.md-header .sleuth-ogre__body {
+  display: block;
+}
+
+.sleuth-ogre--hero img {
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sleuth-ogre--hero img {
+    animation: sleuth-ogre-bob 4s ease-in-out infinite;
+  }
+
+  .sleuth-ogre--header img {
+    transform-origin: 50% 100%;
+    animation: sleuth-ogre-breathe 5s ease-in-out infinite;
+  }
+
+  .sleuth-ogre--wiggle {
+    animation: sleuth-ogre-wiggle 0.5s ease-in-out;
+  }
+
+  .sleuth-ogre--spin {
+    animation: sleuth-ogre-spin 0.7s cubic-bezier(0.3, 0, 0.2, 1);
+  }
+}
+
+@keyframes sleuth-ogre-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.2rem); }
+}
+
+@keyframes sleuth-ogre-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes sleuth-ogre-wiggle {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-8deg); }
+  40% { transform: rotate(7deg); }
+  60% { transform: rotate(-4deg); }
+  80% { transform: rotate(2deg); }
+}
+
+@keyframes sleuth-ogre-spin {
+  0% { transform: rotate(0) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* The click message: a small bubble in the theme's own colours. Above the hero
+   ogre (clear of the title below it) and under the header logo. */
+.sleuth-ogre__say {
+  position: absolute;
+  bottom: calc(100% + 0.3rem);
+  left: 50%;
+  z-index: 5;
+  width: max-content;
+  max-width: min(18rem, 90vw);
+  padding: 0.3rem 0.6rem;
+  border: 0.05rem solid var(--md-default-fg-color--lightest);
+  border-radius: 0.3rem;
+  color: var(--md-default-fg-color);
+  background-color: var(--md-default-bg-color);
+  box-shadow: var(--md-shadow-z2);
+  font-size: 0.7rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: sleuth-ogre-say-in 0.2s ease-out;
+  transition: opacity 0.3s;
+}
+
+.md-header .sleuth-ogre__say {
+  top: calc(100% + 0.4rem);
+  bottom: auto;
+  left: 0;
+  transform: none;
+}
+
+.sleuth-ogre__say--out {
+  opacity: 0;
+}
+
+@keyframes sleuth-ogre-say-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .sleuth-intro {
   margin-top: 1.5rem;
   text-align: center;
