@@ -18,7 +18,7 @@ hide:
 
 </div>
 
-<div class="grid" markdown>
+<div class="grid sleuth-cards" markdown>
 
 <div class="card" markdown>
 
