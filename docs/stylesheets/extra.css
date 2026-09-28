@@ -182,3 +182,21 @@ body:not(:has(.sleuth-hero)) .md-content__inner {
     --md-default-bg-color: var(--sleuth-page-bg);
   }
 }
+
+/* Wider, adaptive layout. Material caps the grid at 61rem (1220px at its default
+   size), which leaves wide margins on laptops. 76rem fills common laptop widths
+   and still caps on large and ultrawide screens (Material raises the root font
+   size at 100em and 125em, so the cap scales: about 1670px at 1920 wide, 1820px
+   at 2560 and up). Below 1220px nothing changes: the grid already fills the
+   screen and tablets and phones keep Material's layout and nav drawer. */
+.md-grid {
+  max-width: 76rem;
+}
+
+/* Keep prose at a readable measure as the panel widens: top-level paragraphs,
+   lists and quotes stop at about 90 characters per line in IBM Plex Sans (the
+   line length the narrower layout had). Code blocks, tables, images, admonitions
+   and cards still use the full panel width. */
+.md-typeset.md-content__inner > :is(p, ul, ol, blockquote, dl) {
+  max-width: 40em;
+}
