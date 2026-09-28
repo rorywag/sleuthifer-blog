@@ -185,6 +185,24 @@ body:not(:has(.sleuth-hero)) .md-content__inner {
   }
 }
 
+/* Header: the site name links home like the logo (overrides/partials/header.html).
+   It keeps the header text colour, and the logo-to-name gap drops from about 32px
+   to 16px. Below 76.25em Material hides the logo in favour of the menu button,
+   so the default spacing stays there. */
+.md-header__topic .sleuth-header-home {
+  color: inherit;
+}
+
+@media screen and (min-width: 76.25em) {
+  [dir="ltr"] .md-header__title {
+    margin-left: 0.2rem;
+  }
+
+  [dir="rtl"] .md-header__title {
+    margin-right: 0.2rem;
+  }
+}
+
 /* Wider, adaptive layout. Material caps the grid at 61rem (1220px at its default
    size), which leaves wide margins on laptops. 76rem fills common laptop widths
    and still caps on large and ultrawide screens (Material raises the root font
