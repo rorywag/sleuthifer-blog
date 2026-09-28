@@ -1,3 +1,78 @@
+/* ---- Colours: blue team vs red team ----------------------------------------
+   Steel blue is the primary (header, links, primary buttons, chrome). Red is the
+   ogre logo's #dd2e44 toned down (saturation 72% -> 58%) and used sparingly: link
+   and button hovers, danger and warning admonitions, and the outlined hero button.
+   Link and red shades differ per scheme so text stays at WCAG AA (4.5:1) or better
+   on the backgrounds it sits on; mkdocs.yml sets primary/accent to "custom". */
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color: #3a5e88;         /* hsl(212, 40%, 38%) */
+  --md-primary-fg-color--light: #4d7cb2;
+  --md-primary-fg-color--dark: #2e4a6b;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: #ffffffb3;
+}
+
+/* Light mode: darker link blue and red, for white and #eef0f3 backgrounds. */
+[data-md-color-scheme="default"][data-md-color-primary="custom"] {
+  --md-typeset-a-color: #2e629e;    /* hsl(212, 55%, 40%) */
+}
+
+[data-md-color-scheme="default"][data-md-color-accent="custom"] {
+  --sleuth-red: #b12f40;             /* hsl(352, 58%, 44%) */
+  --sleuth-red-tint: rgba(177, 47, 64, 0.1);
+  --md-accent-fg-color: var(--sleuth-red);
+  --md-accent-fg-color--transparent: var(--sleuth-red-tint);
+  --md-accent-bg-color: #ffffff;
+  --md-accent-bg-color--light: #ffffffb3;
+}
+
+/* Dark mode: lighter link blue and red, for the slate home background and the
+   raised content panel. Text on a red fill is near-black rather than white. */
+[data-md-color-scheme="slate"][data-md-color-primary="custom"] {
+  --md-typeset-a-color: #85afe0;     /* hsl(212, 60%, 70%) */
+}
+
+[data-md-color-scheme="slate"][data-md-color-accent="custom"] {
+  --sleuth-red: #e18e99;              /* hsl(352, 58%, 72%) */
+  --sleuth-red-tint: rgba(225, 142, 153, 0.12);
+  --md-accent-fg-color: var(--sleuth-red);
+  --md-accent-fg-color--transparent: var(--sleuth-red-tint);
+  --md-accent-bg-color: #1a1c23;
+  --md-accent-bg-color--light: #1a1c23b3;
+}
+
+/* Outlined buttons (e.g. "View source on GitHub") use the link blue, which meets AA
+   on both panels; Material's default primary blue is too dark on the dark panel. */
+.md-typeset .md-button:not(.md-button--primary) {
+  color: var(--md-typeset-a-color);
+  border-color: var(--md-typeset-a-color);
+}
+
+/* Danger and warning admonitions (and their aliases) take the toned red. */
+.md-typeset .admonition:is(.danger, .error, .warning, .caution, .attention),
+.md-typeset details:is(.danger, .error, .warning, .caution, .attention) {
+  border-color: var(--sleuth-red);
+}
+
+.md-typeset :is(.danger, .error, .warning, .caution, .attention) > :is(.admonition-title, summary) {
+  background-color: var(--sleuth-red-tint);
+}
+
+.md-typeset :is(.danger, .error, .warning, .caution, .attention) > :is(.admonition-title, summary)::before {
+  background-color: var(--sleuth-red);
+}
+
+.md-typeset details:is(.danger, .error, .warning, .caution, .attention):focus-within {
+  box-shadow: 0 0 0 0.2rem var(--sleuth-red-tint);
+}
+
+/* ---- Fonts ------------------------------------------------------------------
+   Inter (text) and JetBrains Mono (code, fenced and inline) come from theme.font.
+   Headings use Space Grotesk, loaded from Google Fonts via extra_css. */
+.md-typeset :is(h1, h2, h3, h4, h5, h6) {
+  font-family: "Space Grotesk", var(--md-text-font-family);
+}
+
 /* Home page landing layout (docs/README.md). Colours come from Material's
    theme variables so the page follows the light and dark palettes. */
 
@@ -28,11 +103,18 @@
   margin: 0.25rem 0.35rem;
 }
 
-/* In dark mode the outlined button's indigo text is too dim on the slate
-   background, so use the lighter link colour. Hover keeps Material's style. */
-[data-md-color-scheme="slate"] .md-typeset .sleuth-hero .md-button:not(.md-button--primary):not(:hover):not(:focus) {
-  color: var(--md-typeset-a-color);
-  border-color: var(--md-typeset-a-color);
+/* Hero pair: "Browse the notes" is the solid blue primary button (blue team);
+   "Explore detections" is outlined in red (the threat you go hunting). Its hover
+   fills with the red; Material's primary button already hovers to the accent red. */
+.md-typeset .sleuth-hero .md-button:not(.md-button--primary) {
+  color: var(--sleuth-red);
+  border-color: var(--sleuth-red);
+}
+
+.md-typeset .sleuth-hero .md-button:not(.md-button--primary):is(:hover, :focus) {
+  color: var(--md-accent-bg-color);
+  background-color: var(--sleuth-red);
+  border-color: var(--sleuth-red);
 }
 
 .sleuth-intro {
@@ -44,7 +126,7 @@
 /* Raised content panel. Article and section pages get a page background with
    the content column lifted onto a surface above it. The home page (the only
    page with .sleuth-hero) is left as it is. Browsers without :has() skip these
-   rules and show the flat layout. Theme colours and fonts are unchanged. */
+   rules and show the flat layout. */
 :root {
   --sleuth-page-bg: #eef0f3;
   --sleuth-surface-bg: #ffffff;

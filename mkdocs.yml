@@ -24,21 +24,29 @@ theme:
   # Ogre emoji (U+1F479) from Twemoji, CC-BY 4.0. Credited in the site footer (copyright below).
   logo: assets/images/logo.png
   favicon: assets/images/favicon.ico
+  # Colours are custom (steel blue primary, toned ogre-red accent), defined as CSS
+  # custom properties in docs/stylesheets/extra.css. Dark (slate) stays first, so
+  # it's the default, with the toggle to light.
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
+  # Body text Inter and code JetBrains Mono, loaded from Google Fonts by Material.
+  # Headings use Space Grotesk, loaded via extra_css below.
+  font:
+    text: Inter
+    code: JetBrains Mono
   features:
     - navigation.sections
     - navigation.indexes
@@ -98,7 +106,12 @@ plugins:
       stylesheet: ""
   # Preview images for links shared on LinkedIn, Slack, etc. Needs mkdocs-material[imaging]
   # and the cairo/freetype system libraries.
-  - social
+  - social:
+      # The palette is "custom", which the card renderer can't read, so give it the
+      # steel blue primary (#3a5e88) and white text directly (6.7:1).
+      cards_layout_options:
+        background_color: "#3a5e88"
+        color: "#ffffff"
 
 hooks:
   - hooks/rss_social_cards.py
@@ -120,6 +133,7 @@ extra:
 
 # Home page hero and card layout.
 extra_css:
+  - https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap
   - stylesheets/extra.css
 
 markdown_extensions:
