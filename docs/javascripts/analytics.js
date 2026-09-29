@@ -12,12 +12,22 @@
    The endpoint is set in the config as well as on the script tag's
    data-goatcounter attribute. count.js looks the tag up on every count, and
    instant navigation swaps the page <head>, which removes the tag; without
-   the config fallback, every count after the first would be dropped. */
+   the config fallback, every count after the first would be dropped.
+
+   count.js is self-hosted rather than loaded from gc.zgo.at, so no third-party
+   script runs on the site; only the page-view beacon goes to GoatCounter.
+   vendor/goatcounter-count-v2.7.0.js is GoatCounter's public/count.js at tag
+   v2.7.0 (commit 7e91d8a9bdbb0dd48496e498c5680f8f3477a1b4), unmodified, ISC
+   licensed. SHA-256:
+   030ad75a7c80a04107a9b91f79e4b1572da0a583a80a9b67e111b310da11cbe9
+   To update, download public/count.js from a newer tag, save it under a new
+   versioned name, check its hash, and change SCRIPT below. */
 (function () {
   "use strict";
 
   var ENDPOINT = "https://sleuthifer.goatcounter.com/count";
-  var SCRIPT = "//gc.zgo.at/count.js";
+  // Resolved against this file's own URL, so it works from any page depth.
+  var SCRIPT = new URL("vendor/goatcounter-count-v2.7.0.js", document.currentScript.src).href;
 
   window.goatcounter = window.goatcounter || {};
   window.goatcounter.no_onload = true;
