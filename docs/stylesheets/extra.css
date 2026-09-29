@@ -316,6 +316,48 @@ body:not(:has(.sleuth-hero)) .md-content__inner {
   }
 }
 
+/* Search and the light/dark toggle on the tabs row. With navigation.tabs.sticky
+   the tabs render inside the header, directly below the title row, on the same
+   centred grid. From 76.25em (where the tabs row shows) both are taken out of the
+   title row and placed one row down: the toggle at the right end, the search box
+   just left of it. They stay inside the header in the DOM, so Material's search
+   and palette styles and scripts (expand on focus, suggestions, results, theme
+   switching) work unchanged. Below 76.25em there are no tabs, so both keep
+   Material's default place in the title row. */
+@media screen and (min-width: 76.25em) {
+  .md-header__inner {
+    position: relative;
+  }
+
+  .md-header__inner > .md-header__option,
+  .md-header__inner > .md-search {
+    position: absolute;
+    top: 100%;
+    height: 2.4rem;
+  }
+
+  .md-header__inner > .md-header__option {
+    right: 0.2rem;
+  }
+
+  /* The toggle is 2.4rem wide. */
+  .md-header__inner > .md-search {
+    right: 2.6rem;
+  }
+}
+
+/* Single-page tabs (Tools, Useful Links, Subscribe) hide the navigation sidebar,
+   which would only repeat the page title. Material then widens the content into
+   that space, so the panel would start further left than on other pages. Keep the
+   sidebar's width plus margin (12.5rem) as empty space instead. Pages that hide
+   both sidebars (the home page) and blog posts, which show a post sidebar in its
+   place, are unaffected. */
+@media screen and (min-width: 76.25em) {
+  .md-main__inner:not(:has(.md-sidebar--post)) > .md-sidebar--primary[hidden] ~ .md-sidebar--secondary:not([hidden]) ~ .md-content {
+    margin-left: 12.5rem;
+  }
+}
+
 /* Wider, adaptive layout. Material caps the grid at 61rem (1220px at its default
    size), which leaves wide margins on laptops. 76rem fills common laptop widths
    and still caps on large and ultrawide screens (Material raises the root font
