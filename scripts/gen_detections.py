@@ -7,10 +7,16 @@ is written into docs/. The source repo is cloned into .cache/kql-detections
 Environment variables:
     KQL_DETECTIONS_DIR      use a different clone location
     KQL_DETECTIONS_OFFLINE  set to 1 to skip the pull and use the existing clone
+
+Everything read from the clone is treated as untrusted. Header metadata is HTML-
+and Markdown-escaped before it reaches a page (see md_text and plain_text), only
+http(s) URLs become links, tactics are checked against the ATT&CK list, and
+symlinks or paths that resolve outside the clone are never read.
 """
 
 from __future__ import annotations
 
+import html
 import logging
 import os
 import re
@@ -77,6 +83,7 @@ TACTIC_ORDER = [
     "Impact",
 ]
 UNMAPPED = "Unmapped"
+KNOWN_TACTICS = {t.lower(): t for t in TACTIC_ORDER}
 
 
 @dataclass
@@ -116,7 +123,9 @@ def sync_repo() -> str:
         CLONE_DIR.parent.mkdir(parents=True, exist_ok=True)
         subprocess.run(
             # Full history (the repo is small): page dates come from git log.
-            ["git", "clone", "--quiet", f"{REPO_URL}.git", str(CLONE_DIR)],
+            # core.symlinks=false checks symlinks out as plain files holding the
+            # target path, so they can't point outside the clone.
+            ["git", "clone", "--quiet", "-c", "core.symlinks=false", f"{REPO_URL}.git", str(CLONE_DIR)],
             check=True, timeout=300,
         )
     return subprocess.run(
@@ -137,19 +146,42 @@ def git_dates(rel_path: str) -> tuple[str, str]:
     return (stamps[-1], stamps[0]) if stamps else ("", "")
 
 
+def is_safe_file(path: Path, root: Path) -> bool:
+    """A regular file inside the clone: no symlink anywhere on its path within the
+    clone, and its resolved location is still under the clone directory."""
+    rel = path.relative_to(root)
+    parts = root
+    for part in rel.parts:
+        parts = parts / part
+        if parts.is_symlink():
+            return False
+    return path.is_file() and path.resolve().is_relative_to(root.resolve())
+
+
+def read_text(path: Path, root: Path) -> str:
+    if not is_safe_file(path, root):
+        raise ValueError(f"refusing to read {path}: symlink or outside {root}")
+    return path.read_text(encoding="utf-8", errors="replace")
+
+
 def find_detection_files(root: Path) -> list[Path]:
-    """Every .kql file, plus extensionless files that start with a // Name: header."""
+    """Every .kql file, plus extensionless files that start with a // Name: header.
+    Symlinks, and anything that resolves outside the clone, are skipped."""
     found = []
     for path in sorted(root.rglob("*")):
         rel = path.relative_to(root)
-        if not path.is_file() or any(part.startswith(".") for part in rel.parts):
+        if any(part.startswith(".") for part in rel.parts):
+            continue
+        if not is_safe_file(path, root):
+            if path.is_symlink():
+                log.info("Skipping symlink in %s: %s", REPO_URL, rel.as_posix())
             continue
         if path.suffix.lower() == ".kql":
             found.append(path)
         elif path.suffix == "":
-            with path.open(encoding="utf-8", errors="replace") as f:
-                if re.match(r"^//\s*Name\s*:", f.readline()):
-                    found.append(path)
+            first_line = read_text(path, root).split("\n", 1)[0]
+            if re.match(r"^//\s*Name\s*:", first_line):
+                found.append(path)
     return found
 
 
@@ -158,7 +190,7 @@ def find_detection_files(root: Path) -> list[Path]:
 
 def parse_detection(path: Path, root: Path) -> Detection:
     det = Detection(source=path, rel_path=path.relative_to(root).as_posix())
-    lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+    lines = read_text(path, root).splitlines()
 
     # The header is the run of leading "//" lines. A bare "//" separates groups of
     # fields. A comment line that isn't a field continues the previous multi-line
@@ -200,7 +232,12 @@ def add_field(det: Detection, key: str, value: str, continuation: bool = False) 
         urls = URL_RE.findall(value)
         det.references.extend(urls or ([value] if value else []))
     elif key == "tactics":
-        det.tactics.extend(t.strip() for t in value.split(",") if t.strip())
+        for tactic in (t.strip() for t in value.split(",") if t.strip()):
+            known = KNOWN_TACTICS.get(tactic.lower())
+            if known:
+                det.tactics.append(known)
+            else:
+                log.info("Ignoring unknown tactic %r in %s", tactic, det.rel_path)
     elif key == "techniques":
         det.techniques = f"{det.techniques}, {value}".strip(", ") if det.techniques else value
     elif key in ("name", "author", "date"):
@@ -232,6 +269,41 @@ def is_placeholder(value: str) -> bool:
 
 
 # --- Rendering -----------------------------------------------------------------
+
+
+# Characters that start Markdown links (and reference definitions), images and
+# attribute lists ({ onclick=... } via attr_list), plus the backslash itself.
+MD_SPECIALS_RE = re.compile(r"([\\\[\](){}!])")
+# Inline code spans, matched the way Python-Markdown's backtick pattern does. Their
+# contents are left as written: Markdown already renders them as literal text
+# (HTML-escaped), and backslash escapes would show inside them. A span preceded by
+# a backslash isn't treated as code here, so any mismatch only over-escapes.
+CODE_SPAN_RE = re.compile(r"(?<!\\)(`+)(.+?)(?<!`)\1(?!`)")
+
+
+def md_text(text: str) -> str:
+    """Untrusted text for a Markdown body: outside code spans it's Markdown-escaped,
+    then HTML-escaped, so it renders as plain text and can't create tags, links,
+    images or attributes."""
+    text = re.sub(r"[\x00-\x08\x0b-\x1f\x7f]", "", text)
+    out, pos = [], 0
+    for m in CODE_SPAN_RE.finditer(text):
+        out.append(_escape_md(text[pos:m.start()]))
+        out.append(m.group(0))
+        pos = m.end()
+    out.append(_escape_md(text[pos:]))
+    return "".join(out)
+
+
+def _escape_md(text: str) -> str:
+    return html.escape(MD_SPECIALS_RE.sub(r"\\\1", text), quote=True)
+
+
+def plain_text(text: str) -> str:
+    """Untrusted text for front matter. Material prints page.meta.title and
+    description into HTML without escaping, so they're HTML-escaped here."""
+    text = re.sub(r"[\x00-\x1f\x7f]", " ", text)
+    return html.escape(re.sub(r"\s+", " ", text).strip(), quote=True)
 
 
 def mitre_url(technique_id: str) -> str:
@@ -280,8 +352,12 @@ def indent(text: str) -> str:
     return "\n".join(f"    {line}" if line else "" for line in text.splitlines())
 
 
+def is_http_url(ref: str) -> bool:
+    return bool(re.fullmatch(r"https?://[^\s<>\"'`]+", ref))
+
+
 def render_detection(det: Detection, branch: str) -> str:
-    meta = {"title": det.name, "description": plain_description(det)}
+    meta = {"title": plain_text(det.name), "description": plain_text(plain_description(det))}
     if det.tactics:
         meta["tags"] = det.tactics
     # Feed dates (see the rss plugin's date_from_meta in mkdocs.yml).
@@ -289,24 +365,26 @@ def render_detection(det: Detection, branch: str) -> str:
         meta["date"] = det.created
     if det.updated:
         meta["updated"] = det.updated
-    out = [front_matter(meta), f"# {det.name}\n\n"]
+    # Every header value below comes from the source repo: md_text() keeps it plain
+    # text. Only http(s) references become links.
+    out = [front_matter(meta), f"# {md_text(det.name)}\n\n"]
 
     if det.description:
-        out.append(f"{det.description}\n\n")
+        out.append(f"{md_text(det.description)}\n\n")
 
-    cells = [cell(", ".join(det.tactics)), cell(link_techniques(det.techniques)),
-             cell(det.author), cell(det.date)]
+    cells = [cell(md_text(", ".join(det.tactics))), cell(link_techniques(md_text(det.techniques))),
+             cell(md_text(det.author)), cell(md_text(det.date))]
     details = "| Tactic | Technique | Author | Date |\n|---|---|---|---|\n| " + " | ".join(cells) + " |\n"
     for key, value in det.extras.items():
-        details += f"\n**{key}:** {value}\n"
+        details += f"\n**{md_text(key)}:** {md_text(value)}\n"
     if det.references:
         details += "\n**References**\n\n" + "".join(
-            f"- <{ref}>\n" if ref.startswith("http") else f"- {ref}\n" for ref in det.references
+            f"- <{ref}>\n" if is_http_url(ref) else f"- {md_text(ref)}\n" for ref in det.references
         )
     out.append('!!! abstract "Detection details"\n\n' + indent(details) + "\n\n")
 
     if det.notes:
-        out.append('!!! note "Notes"\n\n' + indent("".join(f"- {n}\n" for n in det.notes)) + "\n\n")
+        out.append('!!! note "Notes"\n\n' + indent("".join(f"- {md_text(n)}\n" for n in det.notes)) + "\n\n")
 
     placeholders = placeholder_lists(det.query)
     if placeholders:
@@ -332,9 +410,9 @@ def render_index(detections: list[Detection]) -> str:
     rows = []
     for det in sorted(detections, key=lambda d: d.name.lower()):
         ids = technique_ids(det.techniques)
-        technique = ", ".join(f"[{i}]({mitre_url(i)})" for i in ids) or cell(det.techniques)
-        rows.append(f"| [{cell(det.name)}]({det.slug}.md) | {cell(', '.join(det.tactics))} | "
-                    f"{technique} | {cell(det.date)} |")
+        technique = ", ".join(f"[{i}]({mitre_url(i)})" for i in ids) or cell(md_text(det.techniques))
+        rows.append(f"| [{cell(md_text(det.name))}]({det.slug}.md) | {cell(md_text(', '.join(det.tactics)))} | "
+                    f"{technique} | {cell(md_text(det.date))} |")
     return (
         front_matter(meta)
         + "# Detections\n\n"
@@ -369,9 +447,9 @@ def render_nav(detections: list[Detection]) -> str:
 
     items = ["* [Overview](index.md)"]
     for tactic in sorted(by_tactic, key=tactic_sort_key):
-        items.append(f"* {tactic}")
+        items.append(f"* {md_text(tactic)}")
         for det in sorted(by_tactic[tactic], key=lambda d: d.name.lower()):
-            items.append(f"    * [{det.name}]({det.slug}.md)")
+            items.append(f"    * [{md_text(det.name)}]({det.slug}.md)")
     return "\n".join(items) + "\n"
 
 

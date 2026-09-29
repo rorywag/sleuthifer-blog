@@ -12,10 +12,8 @@ on:
     - cron: "7 15 * * *"
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# Nothing by default; each job asks for only what it needs.
+permissions: {}
 
 # Allow one deployment at a time, but don't cancel a run that's in progress.
 concurrency:
@@ -23,15 +21,22 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # The build runs third-party packages and renders content from KQL-Detections, so
+  # it only gets read access. Actions are pinned to full commit SHAs (Dependabot
+  # keeps them current, see .github/dependabot.yml).
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # The RSS and revision-date plugins read page dates from the full git history.
           fetch-depth: 0
+          # Don't leave the token in .git/config for the rest of the job.
+          persist-credentials: false
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
           cache: pip
@@ -43,20 +48,21 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev pngquant
 
+      # requirements.txt is a hashed lockfile compiled from requirements.in.
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install --require-hashes -r requirements.txt
 
       # scripts/gen_detections.py builds the Detections section from this clone.
       # Full history, because page dates come from the detection files' git log.
       - name: Clone KQL-Detections
-        run: git clone https://github.com/rorywag/KQL-Detections.git .cache/kql-detections
-
-      - uses: actions/configure-pages@v6
+        # core.symlinks=false checks symlinks out as plain files, so a symlink in that
+        # repo can't point the generator at files outside the clone.
+        run: git clone -c core.symlinks=false https://github.com/rorywag/KQL-Detections.git .cache/kql-detections
 
       - name: Build site
         run: mkdocs build --strict
 
-      - uses: actions/upload-pages-artifact@v5
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: site/
           # Every image lives under site/.gitbook/assets, which is skipped by default.
@@ -65,9 +71,16 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Reads the repo's Pages settings, which needs the pages permission, so it runs
+      # here rather than in the read-only build job. Its outputs aren't used.
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
       - id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
