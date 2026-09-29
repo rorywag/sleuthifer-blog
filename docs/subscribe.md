@@ -1,5 +1,8 @@
 ---
 description: Follow new Sleuthifer posts with an RSS feed reader.
+# Single-page tab: the left sidebar would only repeat this page's title.
+hide:
+  - navigation
 ---
 
 # Subscribe via RSS

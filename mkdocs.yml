@@ -57,8 +57,10 @@ theme:
     - navigation.instant.progress
     - navigation.instant.prefetch
     # Top-level nav entries become header tabs; the sidebar shows only the
-    # current tab's pages.
+    # current tab's pages. Sticky tabs render inside the header, so the tabs row
+    # stays in view and can hold the search box (see extra.css).
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.indexes
     - navigation.top

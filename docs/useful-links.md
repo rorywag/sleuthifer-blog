@@ -1,5 +1,8 @@
 ---
 description: Training, News and Items of interest
+# Single-page tab: the left sidebar would only repeat this page's title.
+hide:
+  - navigation
 ---
 
 # Useful Links

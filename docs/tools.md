@@ -1,5 +1,8 @@
 ---
 description: Links to forensics and incident response tools, including FTK Imager, Volatility, Velociraptor, Hayabusa and VirusTotal.
+# Single-page tab: the left sidebar would only repeat this page's title.
+hide:
+  - navigation
 ---
 
 # Tools
