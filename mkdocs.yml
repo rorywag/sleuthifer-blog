@@ -47,6 +47,13 @@ theme:
     text: IBM Plex Sans
     code: IBM Plex Mono
   features:
+    # Instant navigation: internal links load in place (XHR) without a full page
+    # reload. The progress bar shows on slower loads (over 400ms), and prefetch
+    # starts loading a page when its link is hovered. The mask behaviours and
+    # GoatCounter (docs/javascripts/) re-run on each page via Material's document$.
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.instant.prefetch
     # Top-level nav entries become header tabs; the sidebar shows only the
     # current tab's pages.
     - navigation.tabs
