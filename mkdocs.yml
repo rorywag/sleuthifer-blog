@@ -167,9 +167,12 @@ extra:
 extra_css:
   - stylesheets/extra.css
 
-# The mask logo's idle, blink, hover and click behaviours (header and home hero).
 extra_javascript:
+  # The mask logo's idle, blink, hover and click behaviours (header and home hero).
   - javascripts/mask.js
+  # GoatCounter page views (cookieless), counted on every page including instant
+  # navigation changes. See the script for how.
+  - javascripts/analytics.js
 
 markdown_extensions:
   - admonition
