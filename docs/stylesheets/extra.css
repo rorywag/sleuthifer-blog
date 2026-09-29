@@ -316,23 +316,33 @@ body:not(:has(.sleuth-hero)) .md-content__inner {
   }
 }
 
-/* Search on the tabs row. With navigation.tabs.sticky the tabs render inside the
-   header, directly below the title row, on the same centred grid. From 76.25em
-   (where the tabs row shows) the search box is taken out of the title row and
-   placed one row down, right-aligned. It stays inside the header in the DOM, so
-   Material's search styles and scripts (expand on focus, suggestions, results)
-   work unchanged. Below 76.25em there are no tabs, so search keeps Material's
-   default place in the title row: a box on tablets, an icon on phones. */
+/* Search and the light/dark toggle on the tabs row. With navigation.tabs.sticky
+   the tabs render inside the header, directly below the title row, on the same
+   centred grid. From 76.25em (where the tabs row shows) both are taken out of the
+   title row and placed one row down: the toggle at the right end, the search box
+   just left of it. They stay inside the header in the DOM, so Material's search
+   and palette styles and scripts (expand on focus, suggestions, results, theme
+   switching) work unchanged. Below 76.25em there are no tabs, so both keep
+   Material's default place in the title row. */
 @media screen and (min-width: 76.25em) {
   .md-header__inner {
     position: relative;
   }
 
+  .md-header__inner > .md-header__option,
   .md-header__inner > .md-search {
     position: absolute;
     top: 100%;
-    right: 0.2rem;
     height: 2.4rem;
+  }
+
+  .md-header__inner > .md-header__option {
+    right: 0.2rem;
+  }
+
+  /* The toggle is 2.4rem wide. */
+  .md-header__inner > .md-search {
+    right: 2.6rem;
   }
 }
 
