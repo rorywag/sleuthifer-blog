@@ -42,7 +42,8 @@ theme:
         icon: material/brightness-7
         name: Switch to dark mode
   # IBM Plex Sans for body text and headings, IBM Plex Mono for code (fenced and
-  # inline). Material loads both from Google Fonts.
+  # inline). The privacy plugin (below) downloads them from Google Fonts at build
+  # time and serves them from the site, so visitors never contact Google.
   font:
     text: IBM Plex Sans
     code: IBM Plex Mono
@@ -134,6 +135,15 @@ plugins:
   # Old article URLs from before the blog (GitBook paths) redirect to their blog
   # post. Former sub-pages of the merged guides land on their section's heading, and
   # the old section overviews land on the matching blog category.
+  # Downloads external assets (the Google Fonts stylesheet and font files) at build
+  # time into assets/external/ and rewrites pages to use the local copies, so no
+  # page makes runtime requests to fonts.googleapis.com or fonts.gstatic.com.
+  - privacy:
+      # Material's bundle references Mermaid on unpkg.com, but only loads it on a
+      # page with a Mermaid diagram, and this site has none. Excluding it avoids
+      # downloading a 3 MB library into every build.
+      assets_exclude:
+        - unpkg.com/mermaid@*
   - redirects:
       redirect_maps:
         digital-forensics/README.md: blog/category/digital-forensics.md
