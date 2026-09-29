@@ -1,14 +1,15 @@
 site_name: Sleuthifer
 site_description: Notes on digital forensics, incident response, memory analysis and KQL for Sentinel.
 site_url: https://sleuthifer.nz/
-repo_url: https://github.com/rorywag/sleuthifer-blog
-repo_name: rorywag/sleuthifer-blog
+# No repo_url/repo_name: Material's header repository box fetches star and fork
+# counts from api.github.com on every page load, sending visitor IPs to GitHub.
+# The GitHub link in the footer (extra.social) is a plain link instead.
+
 # Shown in the footer of every page. Credits the Twemoji emoji used as the logo (CC-BY 4.0).
 copyright: >-
   The mask logo is the <a href="https://github.com/jdecked/twemoji">Twemoji</a> emoji
   U+1F479, © Twitter, Inc and other contributors, licensed under
   <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>.
-edit_uri: edit/main/docs/
 
 docs_dir: docs
 
