@@ -1,0 +1,10 @@
+# Top-level build dependencies, pinned to exact versions. Edit this file, then
+# regenerate the hashed lockfile with Python 3.12 (the version CI uses):
+#   pip-compile --generate-hashes --allow-unsafe --strip-extras requirements.in
+# CI installs requirements.txt with --require-hashes.
+mkdocs-material[imaging]==9.7.7
+mkdocs-git-revision-date-localized-plugin==1.6.0
+mkdocs-rss-plugin==1.19.0
+mkdocs-gen-files==0.6.1
+mkdocs-literate-nav==0.6.3
+mkdocs-redirects==1.2.2
