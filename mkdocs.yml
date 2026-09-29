@@ -1,6 +1,6 @@
 site_name: Sleuthifer
 site_description: Notes on digital forensics, incident response, memory analysis and KQL for Sentinel.
-site_url: https://rorywag.github.io/sleuthifer-blog/
+site_url: https://sleuthifer.nz/
 repo_url: https://github.com/rorywag/sleuthifer-blog
 repo_name: rorywag/sleuthifer-blog
 # Shown in the footer of every page. Credits the Twemoji emoji used as the logo (CC-BY 4.0).
@@ -111,7 +111,7 @@ plugins:
       # other page (home, blog index and categories, Detections, Tools, Useful Links,
       # Subscribe) stays out without needing to be listed.
       match_path: '^blog/posts/.+\.md$'
-      image: https://rorywag.github.io/sleuthifer-blog/assets/images/logo.png
+      image: https://sleuthifer.nz/assets/images/logo.png
       # No XSLT: the default ("auto") adds an <?xml-stylesheet?> reference to rss.xsl
       # so browsers render the feed as a page, and browsers now show a deprecation
       # warning for XSLT. An empty value serves the feeds as plain XML.
@@ -160,7 +160,7 @@ extra:
     # Links to the Subscribe page, which lists both feeds. Absolute, because Material
     # writes social links into href as-is and a relative path breaks on nested pages.
     - icon: fontawesome/solid/square-rss
-      link: https://rorywag.github.io/sleuthifer-blog/subscribe/
+      link: https://sleuthifer.nz/subscribe/
       name: Subscribe via RSS
 
 # Colours, home page hero and the raised content panel.
