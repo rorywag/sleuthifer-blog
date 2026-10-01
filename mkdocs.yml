@@ -73,8 +73,8 @@ plugins:
   # Posts live in docs/blog/posts/ and are served at /blog/<slug>/. Each post takes
   # one category (Digital Forensics, Incident Response or Memory Analysis); the
   # category pages at /blog/category/<name>/ are the topical indexes, with their
-  # intro text in docs/blog/category/. The archive (by month) is off because every
-  # post carries the same date, so it would be a single entry.
+  # intro text in docs/blog/category/. The archive (by month) is off: with only a
+  # handful of posts, the categories are enough to browse by.
   - blog:
       blog_toc: true
       post_url_format: "{slug}"
