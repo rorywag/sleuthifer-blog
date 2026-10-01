@@ -1,5 +1,5 @@
 ---
-date: 2026-09-27
+date: 2020-09-15
 categories:
   - Digital Forensics
 slug: wireshark

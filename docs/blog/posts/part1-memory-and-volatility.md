@@ -1,5 +1,5 @@
 ---
-date: 2026-09-27
+date: 2021-09-06
 categories:
   - Memory Analysis
 slug: part1-memory-and-volatility
