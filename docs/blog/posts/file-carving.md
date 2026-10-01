@@ -1,5 +1,5 @@
 ---
-date: 2026-09-27
+date: 2020-10-19
 categories:
   - Digital Forensics
 slug: file-carving

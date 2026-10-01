@@ -1,5 +1,5 @@
 ---
-date: 2026-09-27
+date: 2020-09-24
 categories:
   - Digital Forensics
 slug: ftk-imager
