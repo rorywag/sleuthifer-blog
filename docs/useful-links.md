@@ -1,5 +1,6 @@
 ---
-description: Training, News and Items of interest
+description: >-
+  DFIR learning links: SANS, This Week in 4n6, Forensic Focus, DFIR Madness, file system references like NTFS and FAT, and recommended forensics books.
 # Single-page tab: the left sidebar would only repeat this page's title.
 hide:
   - navigation

@@ -3,7 +3,8 @@ date: 2020-09-24
 categories:
   - Digital Forensics
 slug: ftk-imager
-description: An intro to FTK Imager, then creating and verifying an E01 forensic image of a USB drive.
+description: >-
+  FTK Imager forensic imaging: an intro to the tool, then creating an E01 image of a USB drive step by step and verifying it with matching hashes.
 ---
 
 # FTK Imager
@@ -54,7 +55,7 @@ Now that we selected Physical Drive we need to select which Physical Drive that 
 
 Our final steps are now to choose the destination we want to image to go to and if we want to verify the image. First let's choose a destination location and name for the image by clicking the add button shown below. Another noted is to check the "Verify images after they are created" this is important and will be discussed after this step.
 
-![](<../../.gitbook/assets/Imager 7.PNG>)
+![FTK Imager Create Image window with the Add button and Verify images after they are created ticked](<../../.gitbook/assets/Imager 7.PNG>)
 
 Next, we decide what type of image we are creating and this is what differentiates an image from a clone. In this case, we are selecting the E01 image type and clicking next. The next page is for any information we want to add to our image. You can see both these steps below and what I have chosen.
 
@@ -72,7 +73,7 @@ You made it and now go click Start! 🎉
 
 Sit back and wait for the process to finish. You can see the progress bar and in the background is the destination which is slowly filling up with 1500 MB segments of the image until complete.
 
-![](<../../.gitbook/assets/Imager 11.PNG>)
+![FTK Imager Creating Image progress window, with E01 image segments filling the destination folder](<../../.gitbook/assets/Imager 11.PNG>)
 
 Now to finish off let's quickly discuss that "Verify images after they are created" tick box we checked earlier. This is extremely important as it checks the integrity of the image by comparing a hash of the original media against a hash of the forensic image. If the hashes match then you have correctly created a bit by bit copy forensic image but if they mismatch then something has gone wrong which will require some troubleshooting so you can either explain the difference or complete the imaging process successfully.
 

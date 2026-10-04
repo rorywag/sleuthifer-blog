@@ -3,7 +3,8 @@ date: 2021-09-06
 categories:
   - Memory Analysis
 slug: part1-memory-and-volatility
-description: An introduction to examining RAM with volatility
+description: >-
+  Memory forensics with Volatility: why RAM matters to an investigation, finding the right profile with imageinfo, and reading processes with pstree.
 ---
 
 # Part 1: Memory and Volatility
@@ -20,7 +21,7 @@ Random Access Memory, or RAM, is the memory that a computer uses to temporarily 
 
 For example, you may have noticed when running Google Chrome that if you look at the task manager, Chrome tends to use a lot of RAM. This is because Chrome uses the RAM to store information related to running the program. The specifics of why it uses so much? I'm not sure but many a joke has been had as a result.
 
-![](../../.gitbook/assets/chrome-ram-eater.jpg)
+![Comic of the Google Chrome logo swallowing a character labelled RAM, with Task Manager showing Chrome using 1,984 MB](../../.gitbook/assets/chrome-ram-eater.jpg)
 
 As mentioned above RAM is only temporary storage, or what we refer to as volatile, meaning that when the computer is turned off, the RAM is erased too.
 

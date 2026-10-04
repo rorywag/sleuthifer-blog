@@ -4,8 +4,7 @@ categories:
   - Incident Response
 slug: youve-been-hit-popped-or-breached
 description: >-
-  A quick and frank article on what should happen if you are unfortunate to be
-  involved in a cyber security incident.
+  Incident response steps after a cyber security breach: prepare, identify, contain, investigate, eradicate, recover and capture the lessons learned.
 ---
 
 # You've been hit, popped or breached?

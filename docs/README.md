@@ -1,5 +1,6 @@
 ---
-description: Security notes on digital forensics, incident response and memory analysis, shared as I learn.
+description: >-
+  Sleuthifer: notes on digital forensics, incident response and memory analysis, with walkthroughs of FTK Imager, Wireshark, Volatility and file carving.
 hide:
   - navigation
   - toc

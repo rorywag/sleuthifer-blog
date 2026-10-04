@@ -3,7 +3,8 @@ date: 2021-05-25
 categories:
   - Digital Forensics
 slug: cipher
-description: How Cipher.exe /w overwrites deleted data, tested on a USB drive and checked in FTK Imager.
+description: >-
+  Cipher.exe /w anti-forensics: how it wipes deleted data from free space, tested on a USB drive and checked in FTK Imager to see if the file can be recovered.
 ---
 
 # Cipher (Anti-forensics)
