@@ -8,17 +8,19 @@
   {#- BlogPosting structured data, on blog posts only. The blog plugin gives
       every post the blog-post.html template and a creation date, so other
       pages (home, blog index, categories, Detections) are skipped. -#}
+  {#- Both dates are full ISO 8601 datetimes in Pacific/Auckland, set by
+      hooks/blogposting_dates.py. -#}
   {#- The headline goes through striptags, which also decodes entities: MkDocs
       HTML-escapes page titles, and tojson would keep "&amp;" as literal text. -#}
   {%- if page and page.meta and page.meta.template == "blog-post.html"
-        and page.config and page.config.date %}
+        and page.meta.jsonld_date_published %}
     {%- set post = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": page.title | striptags,
       "url": page.canonical_url,
       "mainEntityOfPage": page.canonical_url,
-      "datePublished": page.config.date.created.strftime("%Y-%m-%d"),
+      "datePublished": page.meta.jsonld_date_published,
       "author": {
         "@type": "Person",
         "name": "Rory Wagner",
@@ -28,9 +30,9 @@
     {%- if page.meta.description %}
       {%- set _ = post.update({"description": page.meta.description}) %}
     {%- endif %}
-    {#- Last commit date, from git-revision-date-localized. -#}
-    {%- if page.meta.git_revision_date_localized_raw_iso_date %}
-      {%- set _ = post.update({"dateModified": page.meta.git_revision_date_localized_raw_iso_date}) %}
+    {#- Last commit time, from git-revision-date-localized. -#}
+    {%- if page.meta.jsonld_date_modified %}
+      {%- set _ = post.update({"dateModified": page.meta.jsonld_date_modified}) %}
     {%- endif %}
     {#- The post's social card URL, set by hooks/rss_social_cards.py. -#}
     {%- if page.meta.illustration %}
