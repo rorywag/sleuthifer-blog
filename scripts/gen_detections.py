@@ -416,8 +416,8 @@ def render_index(detections: list[Detection]) -> str:
     return (
         front_matter(meta)
         + "# Detections\n\n"
-        + f"KQL detection queries from [rorywag/KQL-Detections]({REPO_URL}), rebuilt into these pages "
-        + "each time the site is published. Browse them [by tactic](tactics.md) or use the table below.\n\n"
+        + f"KQL detection queries from [rorywag/KQL-Detections]({REPO_URL}). "
+        + "Browse them [by tactic](tactics.md) or use the table below.\n\n"
         + "| Name | Tactic | Technique | Date |\n|---|---|---|---|\n"
         + "\n".join(rows) + "\n"
     )
