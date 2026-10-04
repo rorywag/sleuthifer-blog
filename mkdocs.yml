@@ -169,6 +169,7 @@ hooks:
   - hooks/rss_social_cards.py
   - hooks/exclude_generated_nav.py
   - hooks/og_type_article.py
+  - hooks/blogposting_dates.py
 
 extra:
   social:
