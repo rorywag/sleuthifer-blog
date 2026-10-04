@@ -27,9 +27,3 @@ This is where I keep the security work I learn and share it openly. Some pages a
 [:fontawesome-brands-github: GitHub](https://github.com/rorywag)
 
 </div>
-
-## Projects
-
-I co-built the Narcos digital forensics scenario with my WelTec team, now published
-on [Digital Corpora](https://digitalcorpora.org/corpora/scenarios/2019-narcos/). The
-project site is [DFIR Sleuths](https://dfirsleuths.github.io/).
