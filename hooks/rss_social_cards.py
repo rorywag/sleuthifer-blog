@@ -4,7 +4,8 @@ mkdocs-rss-plugin guesses a page's social card from its source path, so
 docs/blog/posts/wireshark.md becomes .../blog/posts/wireshark.png. Material's
 social plugin names cards after the built page instead (.../blog/wireshark.png
 for a post), so those feed images 404. Setting page.meta["illustration"] (read
-by the RSS plugin, ignored by Material) gives it the correct URL.
+by the RSS plugin, ignored by Material) gives it the correct URL. The
+BlogPosting JSON-LD in overrides/main.html uses the same value as its image.
 """
 
 

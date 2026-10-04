@@ -89,13 +89,13 @@ Lets take a closer look at the first packet we have filtered. We will now move i
 
 Two things we can notice is the device is requesting the IP address 192.168.30.108 and that the requesting device has a host name of "ann-laptop"
 
-![](<../../.gitbook/assets/Wireshark 4.PNG>)
+![Wireshark Packet Details Pane for a DHCP Request showing requested IP 192.168.30.108 and host name ann-laptop](<../../.gitbook/assets/Wireshark 4.PNG>)
 
 Finally the fourth packet a DHCP ACK (Acknowledgment) packet from the Packet List Pane shows the source address 192.168.30.10 to the destination address of 192.168.30.108 which was the address the DHCP request packet was requesting and seems to have been provided by the DHCP server.&#x20;
 
 We can confirm that the IP address 192.168.30.108 has been provided to the device with the MAC address 00:21:70:4d:4f:ae as it is the DHCP ACK packet as highlighted in the picture below.
 
-![](<../../.gitbook/assets/Wireshark 5.PNG>)
+![Wireshark DHCP ACK packet assigning 192.168.30.108 to client MAC address 00:21:70:4d:4f:ae](<../../.gitbook/assets/Wireshark 5.PNG>)
 
 ## Follow TCP Stream and SMTP
 

@@ -4,4 +4,38 @@
   {{ super() }}
   <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32.png' | url }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ 'assets/images/apple-touch-icon.png' | url }}">
+
+  {#- BlogPosting structured data, on blog posts only. The blog plugin gives
+      every post the blog-post.html template and a creation date, so other
+      pages (home, blog index, categories, Detections) are skipped. -#}
+  {#- The headline goes through striptags, which also decodes entities: MkDocs
+      HTML-escapes page titles, and tojson would keep "&amp;" as literal text. -#}
+  {%- if page and page.meta and page.meta.template == "blog-post.html"
+        and page.config and page.config.date %}
+    {%- set post = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": page.title | striptags,
+      "url": page.canonical_url,
+      "mainEntityOfPage": page.canonical_url,
+      "datePublished": page.config.date.created.strftime("%Y-%m-%d"),
+      "author": {
+        "@type": "Person",
+        "name": "Rory Wagner",
+        "url": "https://www.linkedin.com/in/rorywagner/"
+      }
+    } %}
+    {%- if page.meta.description %}
+      {%- set _ = post.update({"description": page.meta.description}) %}
+    {%- endif %}
+    {#- Last commit date, from git-revision-date-localized. -#}
+    {%- if page.meta.git_revision_date_localized_raw_iso_date %}
+      {%- set _ = post.update({"dateModified": page.meta.git_revision_date_localized_raw_iso_date}) %}
+    {%- endif %}
+    {#- The post's social card URL, set by hooks/rss_social_cards.py. -#}
+    {%- if page.meta.illustration %}
+      {%- set _ = post.update({"image": page.meta.illustration}) %}
+    {%- endif %}
+    <script type="application/ld+json">{{ post | tojson }}</script>
+  {%- endif %}
 {% endblock %}

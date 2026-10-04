@@ -73,7 +73,7 @@ We had a file of 1,200 bytes which is the **logical size**, but because this doe
 
 The remaining bytes unused are what we call file slack or slack space. In this case the file slack is (1,024 + 1,024) - 1,200 = 848 bytes of unused allocated space. You can see in the picture below the different sizes.
 
-![](<../../.gitbook/assets/File slack.webp>)
+![Diagram of a file across four clusters, showing logical size, physical size and slack space](<../../.gitbook/assets/File slack.webp>)
 
 ### Contiguous or Fragmented
 
@@ -85,7 +85,7 @@ When a file is fragmented, we are required to work out how many fragments there 
 
 The picture below helps show the difference between these two terms.
 
-![](<../../.gitbook/assets/Hard Drive Fragmentation.jpg>)
+![Hard disk platter diagram showing a fragmented file and a contiguous file across sectors](<../../.gitbook/assets/Hard Drive Fragmentation.jpg>)
 
 ### File Type
 
@@ -172,7 +172,7 @@ The value at offset 0x1C = 44 62 01 00. This is read as little-endian which is 0
 
 We can now divide the file size by cluster size to identify the number of clusters the file uses 90,692/1,024 = 88.57 clusters which we round up to 89 clusters.
 
-![](<../../.gitbook/assets/FTKimager 5 (1).png>)
+![Hex view in FTK Imager with the file size bytes 44 62 01 00 highlighted](<../../.gitbook/assets/FTKimager 5 (1).png>)
 
 ![Hex to Dec file size value](<../../.gitbook/assets/FTKimager 6.PNG>)
 
