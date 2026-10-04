@@ -346,7 +346,7 @@ body:not(:has(.sleuth-hero)) .md-content__inner {
   }
 }
 
-/* Single-page tabs (Tools, Useful Links, Subscribe) hide the navigation sidebar,
+/* Single-page tabs (Tools, Useful Links, Projects, Subscribe) hide the navigation sidebar,
    which would only repeat the page title. Material then widens the content into
    that space, so the panel would start further left than on other pages. Keep the
    sidebar's width plus margin (12.5rem) as empty space instead. Pages that hide

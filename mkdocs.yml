@@ -120,7 +120,7 @@ plugins:
         as_update: updated
       # Feeds list blog posts only, matched against each page's source path. Every
       # other page (home, blog index and categories, Detections, Tools, Useful Links,
-      # Subscribe) stays out without needing to be listed.
+      # Projects, Subscribe) stays out without needing to be listed.
       match_path: '^blog/posts/.+\.md$'
       image: https://sleuthifer.nz/assets/images/logo.png
       # No XSLT: the default ("auto") adds an <?xml-stylesheet?> reference to rss.xsl
@@ -227,4 +227,5 @@ nav:
   - Detections: detections/
   - Tools: tools.md
   - Useful Links: useful-links.md
+  - Projects: projects.md
   - Subscribe: subscribe.md
