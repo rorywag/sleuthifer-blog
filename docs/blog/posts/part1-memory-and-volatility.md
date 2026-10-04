@@ -3,7 +3,8 @@ date: 2021-09-06
 categories:
   - Memory Analysis
 slug: part1-memory-and-volatility
-description: An introduction to examining RAM with volatility
+description: >-
+  Memory forensics with Volatility: why RAM matters to an investigation, finding the right profile with imageinfo, and reading processes with pstree.
 ---
 
 # Part 1: Memory and Volatility

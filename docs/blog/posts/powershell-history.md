@@ -3,7 +3,8 @@ date: 2021-05-11
 categories:
   - Digital Forensics
 slug: powershell-history
-description: Where to find the PowerShell history file.
+description: >-
+  PowerShell history forensics: where Windows stores the PSReadLine ConsoleHost_history.txt file, what it records, and what its timestamps can tell you.
 ---
 
 # PowerShell History

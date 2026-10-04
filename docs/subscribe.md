@@ -1,5 +1,6 @@
 ---
-description: Follow new Sleuthifer posts with an RSS feed reader.
+description: >-
+  Subscribe to Sleuthifer with RSS to get new digital forensics and incident response posts in your feed reader, with the feed URL to copy into any reader.
 # Single-page tab: the left sidebar would only repeat this page's title.
 hide:
   - navigation

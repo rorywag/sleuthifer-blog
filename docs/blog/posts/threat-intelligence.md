@@ -3,7 +3,8 @@ date: 2021-09-06
 categories:
   - Incident Response
 slug: threat-intelligence
-description: Threat intelligence feeds, IoCs and IoAs, the Pyramid of Pain, the Cyber Kill Chain, MITRE ATT&CK and the Diamond Model.
+description: >-
+  Threat intelligence and intrusion analysis: feeds, IoCs and IoAs, the Pyramid of Pain, the Cyber Kill Chain, MITRE ATT&CK and the Diamond Model.
 ---
 
 # Threat Intelligence & Intrusion Analysis
