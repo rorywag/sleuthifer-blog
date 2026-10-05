@@ -11,7 +11,7 @@ description: >-
 
 # Containment in Microsoft 365: the token problem
 
-An analyst gets an adversary-in-the-middle (AiTM) alert on a user. They reset the password and disable the account, then call it contained. Twenty minutes later a sign-in from another country is still reading the mailbox, and a payment redirect is already in flight.
+An adversary-in-the-middle (AiTM) alert fires on a user. The account is disabled and the password reset, then the incident is marked contained. Twenty minutes later a sign-in from another country is still reading the mailbox, and a payment redirect is already in flight.
 
 <!-- more -->
 
