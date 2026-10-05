@@ -51,6 +51,8 @@ In a browser, the sign-in session is held in the Entra `ESTSAUTH` cookie. This i
 
 Flagged means invalidated after a short propagation delay of a few minutes, not killed the instant you click. The access token column is the one to read first. Every action leaves it running, because the resource honours it on signature and expiry, barring Continuous Access Evaluation (CAE). Revoking the refresh token cuts off new access tokens, but the one already in hand keeps working for up to the hour it takes to expire.
 
+The reset cells show Microsoft's documented behaviour, not what you should count on. Treat the refresh token and cookie as live until you run Revoke sessions, which is the action that reliably ends the session.
+
 Disabling the account is the one that trips people up. It blocks new interactive sign-ins and stops the disabled account redeeming a refresh token, but it does not terminate an active session or stop a live token. On its own it is the weakest of the three against an attacker who already has a session.
 
 ## What a password reset revokes
