@@ -17,11 +17,11 @@ An adversary-in-the-middle (AiTM) alert fires on a user. The account is disabled
 
 Nothing failed. The containment actions did what they were designed to do. The problem is that resetting the password and disabling the account targets the front door, and by the time you are responding the attacker is already inside holding a set of keys the front door lock never touches.
 
-It is one of the most common containment mistakes in Microsoft 365 response, and the platform behaviour behind it is not obvious from the admin centre.
+It is one of the most common containment mistakes in Microsoft 365 response and the platform behaviour behind it is not necessarily obvious.
 
 ## How the attacker got in
 
-Start with how they got in, because it decides what you are trying to contain. This is AiTM phishing. The attacker runs a reverse proxy between the victim and the real Microsoft login, relays the password and the multi-factor authentication (MFA) response to the genuine service in real time, and keeps the authenticated session that comes back. The victim does everything right and is genuinely signed in while the proxy copies the result.
+Start with how they got in, because it decides what you are trying to contain. This is AiTM phishing where the attacker runs a reverse proxy between the victim and the real Microsoft login, relays the password and the multi-factor authentication (MFA) response to the genuine service in real time, and keeps the authenticated session that comes back. The victim does everything right and is genuinely signed in while the proxy copies the result.
 
 Because the MFA challenge is relayed to the real identity provider (IdP) and satisfied there, SMS codes, time-based one-time password (TOTP) codes, and Authenticator push are all bypassed. They are shared secrets or approvals the proxy can pass through transparently. FIDO2, passkeys, and certificate-based auth resist this because the cryptographic response is bound to the real origin, and the authenticator refuses to sign for the attacker's proxy domain.
 
