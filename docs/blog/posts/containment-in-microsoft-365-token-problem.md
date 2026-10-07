@@ -21,7 +21,7 @@ It is one of the most common containment mistakes in Microsoft 365 response and 
 
 ## How the attacker got in
 
-Start with how they got in, because it decides what you are trying to contain. This is AiTM phishing where the attacker runs a reverse proxy between the victim and the real Microsoft login, relays the password and the multi-factor authentication (MFA) response to the genuine service in real time, and keeps the authenticated session that comes back. The victim does everything right and is genuinely signed in while the proxy copies the result.
+Start with how they got in, because it decides what you are trying to contain. This is AiTM phishing where the attacker runs a reverse proxy between the victim and the real Microsoft login, relays the password and the multi-factor authentication (MFA) response to the genuine service in real time and keeps the authenticated session that comes back. The victim does everything right and is genuinely signed in while the proxy copies the result.
 
 Because the MFA challenge is relayed to the real identity provider (IdP) and satisfied there, SMS codes, time-based one-time password (TOTP) codes, and Authenticator push are all bypassed. They are shared secrets or approvals the proxy can pass through transparently. FIDO2, passkeys, and certificate-based auth resist this because the cryptographic response is bound to the real origin, and the authenticator refuses to sign for the attacker's proxy domain.
 
@@ -39,7 +39,7 @@ The access token is the bearer credential the client presents to a resource such
 
 The refresh token is long lived and silently mints new access tokens when the old one expires, and it is what Revoke sessions invalidates. Microsoft notes a small delay of a few minutes before that propagates, after which redeeming the token errors and the client is forced back to an interactive sign-in. A reset is the unreliable one, which the password reset section gets into.
 
-In a browser, the sign-in session is held in the Entra `ESTSAUTH` cookie. This is the artifact AiTM steals. Replay it into another browser and you have an authenticated session that mints fresh tokens without re-doing MFA, because MFA was already satisfied when the victim signed in.
+In a browser, the sign-in session is held in the Entra `ESTSAUTH` cookie and this is the artifact that AiTM steals. Replay it into another browser and you have an authenticated session that mints fresh tokens without re-doing MFA, because MFA was already satisfied when the victim signed in.
 
 ## Why disable and reset isn't enough
 
