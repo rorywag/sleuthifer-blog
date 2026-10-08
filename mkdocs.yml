@@ -15,8 +15,13 @@ docs_dir: docs
 
 # MkDocs skips dot-directories by default. The images from the GitBook export
 # live in .gitbook/assets, so re-include it.
+# Tools and Useful Links are unpublished: their sources stay in docs/ but are
+# left out of the build, so they aren't on the site, in search or in the
+# sitemap. To bring one back, delete its line here and re-add its nav entry.
 exclude_docs: |
   !.gitbook/
+  /tools.md
+  /useful-links.md
 
 theme:
   name: material
@@ -119,8 +124,8 @@ plugins:
         as_creation: date
         as_update: updated
       # Feeds list blog posts only, matched against each page's source path. Every
-      # other page (home, blog index and categories, Detections, Tools, Useful Links,
-      # Projects, Subscribe) stays out without needing to be listed.
+      # other page (home, blog index and categories, Detections, Projects,
+      # Subscribe) stays out without needing to be listed.
       match_path: '^blog/posts/.+\.md$'
       image: https://sleuthifer.nz/assets/images/logo.png
       # No XSLT: the default ("auto") adds an <?xml-stylesheet?> reference to rss.xsl
@@ -225,7 +230,5 @@ nav:
   - Blog:
       - blog/index.md
   - Detections: detections/
-  - Tools: tools.md
-  - Useful Links: useful-links.md
   - Projects: projects.md
   - Subscribe: subscribe.md
