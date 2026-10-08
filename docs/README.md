@@ -21,7 +21,7 @@ hide:
 
 <div class="sleuth-intro" markdown>
 
-This is where I keep the security work I learn and share it openly. Some pages are still being written, so expect the site to keep growing.
+This is where I write up the security work I learn and share it openly. New posts go up whenever I’ve got something worth writing down.
 
 [:fontawesome-brands-linkedin: LinkedIn](https://www.linkedin.com/in/rorywagner/) &nbsp;·&nbsp;
 [:fontawesome-brands-github: GitHub](https://github.com/rorywag)
