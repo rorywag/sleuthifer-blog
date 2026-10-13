@@ -19,7 +19,7 @@
 |---|---|
 | [Blog](https://sleuthifer.nz/blog/) | Walkthroughs and notes, grouped into Digital Forensics, Incident Response and Memory Analysis. FTK Imager, Wireshark, file carving, Volatility, threat intelligence and more. |
 | [Detections](https://sleuthifer.nz/detections/) | KQL detection queries from [rorywag/KQL-Detections](https://github.com/rorywag/KQL-Detections), browsable by MITRE ATT&CK tactic. |
-| [Projects](https://sleuthifer.nz/projects/) | Work outside the day job, including the Narcos digital forensics scenario. |
+| [Projects](https://sleuthifer.nz/projects/) | Work outside the day job, including the Narcos digital forensics scenario and Hayabusa Bulk Runner. |
 | [Subscribe](https://sleuthifer.nz/subscribe/) | An RSS feed of new blog posts. |
 
 ## Credits
