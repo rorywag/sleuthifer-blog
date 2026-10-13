@@ -1,7 +1,7 @@
 ---
 description: >-
-  Projects by Rory Wagner, including the Narcos digital forensics scenario built
-  with the DFIR Sleuths team and published on Digital Corpora.
+  Projects by Rory Wagner: the Narcos digital forensics scenario published on
+  Digital Corpora, and Hayabusa Bulk Runner for triaging KAPE collections.
 # Single-page tab: the left sidebar would only repeat this page's title.
 hide:
   - navigation
