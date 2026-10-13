@@ -24,5 +24,5 @@ A PowerShell wrapper that runs [Hayabusa](https://github.com/Yamato-Security/hay
 across a folder of KAPE collections, one run per host. It extracts the ZIPs and
 mounts the disk images, then gives each host its own HTML alert report, CSV
 timeline and log, plus a dashboard showing which hosts are worst and which rules
-fired where. It's in pre-release, and the code is on GitHub at
+fired where. The code is available on GitHub at
 [rorywag/Hayabusa-Bulk-Runner](https://github.com/rorywag/Hayabusa-Bulk-Runner).
