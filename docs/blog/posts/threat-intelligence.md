@@ -5,6 +5,7 @@ categories:
 slug: threat-intelligence
 description: >-
   Threat intelligence and intrusion analysis: feeds, IoCs and IoAs, the Pyramid of Pain, the Cyber Kill Chain, MITRE ATT&CK and the Diamond Model.
+seo_title: "Pyramid of Pain, Kill Chain and Diamond Model Explained"
 ---
 
 # Threat Intelligence & Intrusion Analysis

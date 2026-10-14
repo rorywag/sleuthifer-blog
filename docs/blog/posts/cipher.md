@@ -5,6 +5,7 @@ categories:
 slug: cipher
 description: >-
   Cipher.exe /w anti-forensics: how it wipes deleted data from free space, tested on a USB drive and checked in FTK Imager to see if the file can be recovered.
+seo_title: "How cipher.exe Wipes Deleted Data: an Anti-forensics Look"
 ---
 
 # Cipher (Anti-forensics)

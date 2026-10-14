@@ -5,6 +5,7 @@ categories:
 slug: ftk-imager
 description: >-
   FTK Imager forensic imaging: an intro to the tool, then creating an E01 image of a USB drive step by step and verifying it with matching hashes.
+seo_title: "Create and Verify an E01 Image with FTK Imager"
 ---
 
 # FTK Imager

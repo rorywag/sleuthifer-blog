@@ -6,6 +6,7 @@ slug: file-carving
 description: >-
   File carving concepts (sectors, clusters, file size and fragmentation), then
   manually carving a deleted file from a FAT32 file system with FTK Imager.
+seo_title: "Manual File Carving from FAT32 with FTK Imager"
 ---
 
 # File Carving

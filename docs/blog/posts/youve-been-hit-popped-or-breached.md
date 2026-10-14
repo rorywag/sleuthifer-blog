@@ -5,6 +5,7 @@ categories:
 slug: youve-been-hit-popped-or-breached
 description: >-
   Incident response steps after a cyber security breach: prepare, identify, contain, investigate, eradicate, recover and capture the lessons learned.
+seo_title: "Incident Response Steps After a Breach: a Field Guide"
 ---
 
 # You've been hit, popped or breached?

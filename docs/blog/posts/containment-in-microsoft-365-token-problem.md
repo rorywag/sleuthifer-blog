@@ -7,6 +7,7 @@ description: >-
   Why disabling an account and resetting the password does not evict a threat
   actor from Microsoft 365, what each action does to the tokens, and the order
   of containment that works.
+seo_title: "M365 Token Theft: Why Disable and Reset Won't Evict the Attacker"
 ---
 
 # Containment in Microsoft 365 - the token problem

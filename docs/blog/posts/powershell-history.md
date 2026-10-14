@@ -5,6 +5,7 @@ categories:
 slug: powershell-history
 description: >-
   PowerShell history forensics: where Windows stores the PSReadLine ConsoleHost_history.txt file, what it records, and what its timestamps can tell you.
+seo_title: "PowerShell Console History Forensics: ConsoleHost_history.txt"
 ---
 
 # PowerShell History

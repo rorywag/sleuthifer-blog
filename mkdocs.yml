@@ -175,6 +175,7 @@ hooks:
   - hooks/exclude_generated_nav.py
   - hooks/og_type_article.py
   - hooks/blogposting_dates.py
+  - hooks/sitemap_lastmod.py
 
 extra:
   social:

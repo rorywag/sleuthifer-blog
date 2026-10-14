@@ -6,6 +6,7 @@ slug: wireshark
 description: >-
   An intro to Wireshark, then using Protocol Hierarchy and a DHCP filter to
   identify a laptop, and following a TCP stream to decode an SMTP login.
+seo_title: "Wireshark for Network Forensics: DHCP and SMTP"
 ---
 
 # Wireshark
