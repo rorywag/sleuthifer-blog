@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 
+{#- A post's front matter can set seo_title to give the HTML <title> a more
+    descriptive search title. Only <title> changes: the H1, nav, blog index,
+    RSS and og:title/twitter:title all keep page.title. -#}
+{% block htmltitle %}
+  {%- if page and page.meta and page.meta.seo_title %}
+    <title>{{ page.meta.seo_title }} - {{ config.site_name }}</title>
+  {%- else %}
+    {{ super() }}
+  {%- endif %}
+{% endblock %}
+
 {% block extrahead %}
   {{ super() }}
   <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32.png' | url }}">

@@ -5,6 +5,7 @@ categories:
 slug: part1-memory-and-volatility
 description: >-
   Memory forensics with Volatility: why RAM matters to an investigation, finding the right profile with imageinfo, and reading processes with pstree.
+seo_title: "Memory Forensics with Volatility: Profiles and Processes"
 ---
 
 # Part 1: Memory and Volatility
